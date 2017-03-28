@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity
 
         mContext = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mLayoutManager = new GridLayoutManager(mContext,2);
+        mLayoutManager = new GridLayoutManager(mContext,Utility.calculateNoOfColumns(mContext));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         List<Category> categories = new ArrayList<>();
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        getSupportActionBar().setTitle("Vyber kategorii");
     }
 
     @Override
@@ -110,18 +113,24 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_keyboard) {
+            Toast.makeText(
+                    mContext,
+                    "Activita pro psani na klavesnici",
+                    Toast.LENGTH_SHORT
+            ).show();
+        } else if (id == R.id.nav_recently_used) {
+            Toast.makeText(
+                    mContext,
+                    "Activita pro posledni pouzite",
+                    Toast.LENGTH_SHORT
+            ).show();
+        } else if (id == R.id.nav_auth) {
+            Toast.makeText(
+                    mContext,
+                    "Administratorsky rezim",
+                    Toast.LENGTH_SHORT
+            ).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
