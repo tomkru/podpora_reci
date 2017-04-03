@@ -1,6 +1,7 @@
 package cz.muni.fi.pv239.porenut;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.card_view, parent,false);
-
+        mContext = parent.getContext();
         // Get the TextView reference from RecyclerView current item
         final TextView textView = (TextView) v.findViewById(R.id.text_view);
 
@@ -51,12 +52,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 // Get the RecyclerView current item serial and text
                 final String string = textView.getText().toString();
 
+
                 // Display the RecyclerView clicked item serial and label
                 Toast.makeText(
                         mContext,
                         "Clicked : " + string,
                         Toast.LENGTH_SHORT
                 ).show();
+                Intent intent = new Intent(mContext, CategoryListActivity.class);
+                intent.putExtra("category", textView.getText().toString());
+                mContext.startActivity(intent);
             }
         });
 
