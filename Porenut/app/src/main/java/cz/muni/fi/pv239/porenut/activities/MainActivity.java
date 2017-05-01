@@ -3,27 +3,29 @@ package cz.muni.fi.pv239.porenut.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
-import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.Utility;
 import cz.muni.fi.pv239.porenut.adapters.CategoryAdapter;
+import cz.muni.fi.pv239.porenut.entities.Category;
+import io.realm.Realm;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,11 +34,15 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-
+    private Realm mRealm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Realm.init(this);
+        mRealm = Realm.getDefaultInstance();
+
 
         mContext = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
