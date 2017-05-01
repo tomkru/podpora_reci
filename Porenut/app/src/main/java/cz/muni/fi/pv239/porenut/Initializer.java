@@ -19,6 +19,6 @@ public class Initializer {
     }
 
     public static void initCategoryItem(Realm realm, String text) {
-        
+
     }
 }
