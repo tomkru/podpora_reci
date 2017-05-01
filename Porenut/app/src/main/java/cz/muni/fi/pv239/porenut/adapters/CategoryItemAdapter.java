@@ -76,7 +76,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
     @Override
     public void onBindViewHolder(CategoryItemAdapter.ViewHolder holder, int position) {
         // Get the current item from the data set
-        String string = categoryItemList.get(position).text;
+        String string = categoryItemList.get(position).getText();
 
         // Set the TextView widgets text
         holder.mTextView.setText(string);

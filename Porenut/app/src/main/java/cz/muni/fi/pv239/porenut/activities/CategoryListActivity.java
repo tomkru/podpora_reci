@@ -29,7 +29,7 @@ import cz.muni.fi.pv239.porenut.adapters.CategoryItemAdapter;
  */
 
 public class CategoryListActivity extends AppCompatActivity {
-    private ListView categoryItems;
+
     private Context context;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;

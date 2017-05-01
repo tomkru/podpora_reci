@@ -20,11 +20,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.muni.fi.pv239.porenut.Initializer;
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.Utility;
 import cz.muni.fi.pv239.porenut.adapters.CategoryAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class MainActivity extends AppCompatActivity
@@ -42,20 +44,19 @@ public class MainActivity extends AppCompatActivity
 
         Realm.init(this);
         mRealm = Realm.getDefaultInstance();
-
+        Initializer.initCategory(mRealm, "Pozdravy");
+        Initializer.initCategory(mRealm, "Jídlo");
+        Initializer.initCategory(mRealm, "Pití");
+        Initializer.initCategory(mRealm, "Potřeby");
+        Initializer.initCategory(mRealm, "Pomoc");
+        Initializer.initCategory(mRealm, "Zábava");
 
         mContext = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mLayoutManager = new GridLayoutManager(mContext, Utility.calculateNoOfColumns(mContext));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<Category> categories = new ArrayList<>();
-        categories.add(new Category("Kategorie 1"));
-        categories.add(new Category("Kategorie 2"));
-        categories.add(new Category("Kategorie 3"));
-        categories.add(new Category("Kategorie 4"));
-        categories.add(new Category("Kategorie 5"));
-        categories.add(new Category("Kategorie 6"));
+        RealmResults<Category> categories = mRealm.where(Category.class).findAll();
 
         mAdapter = new CategoryAdapter(mContext,categories);
         mRecyclerView.setAdapter(mAdapter);
@@ -146,5 +147,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mRealm.close();
     }
 }

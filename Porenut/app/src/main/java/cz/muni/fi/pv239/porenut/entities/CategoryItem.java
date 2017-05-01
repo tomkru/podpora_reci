@@ -7,9 +7,20 @@ import io.realm.RealmObject;
  */
 
 public class CategoryItem extends RealmObject {
-    public String text;
+    private String text;
+
+    public CategoryItem(){}
 
     public CategoryItem(String text) {
         this.text = text;
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
 }

@@ -15,6 +15,7 @@ import java.util.List;
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.activities.CategoryListActivity;
+import io.realm.OrderedRealmCollection;
 
 /**
  * Created by Josef Pavelec on 29/03/17.
@@ -37,7 +38,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
     }
 
-    public CategoryAdapter(Context mContext, List<Category> mDataSet) {
+    public CategoryAdapter(Context mContext, OrderedRealmCollection<Category> mDataSet) {
         this.mContext = mContext;
         this.mDataSet = mDataSet;
     }
@@ -70,7 +71,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         });
 
         ViewHolder vh = new ViewHolder(v);
-
         // Return the ViewHolder
         return vh;
     }
@@ -78,7 +78,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(CategoryAdapter.ViewHolder holder, int position) {
         // Get the current item from the data set
-        String string = mDataSet.get(position).title;
+        String string = mDataSet.get(position).getTitle();
 
         // Set the TextView widgets text
         holder.mTextView.setText(string);
