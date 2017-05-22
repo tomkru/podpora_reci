@@ -42,8 +42,8 @@ public class CategoryListActivity extends AppCompatActivity {
 
         List<CategoryItem> items = new ArrayList<>();
         for(int i = 0; i < 15; i++){
-            if (i % 2 == 0 )items.add(new CategoryItem("item item test testt testestetestestsetetse " + i));
-            else items.add(new CategoryItem("item " + i));
+            if (i % 2 == 0 )items.add(new CategoryItem("item item test testt testestetestestsetetse " + i, R.raw.dobry_den));
+            else items.add(new CategoryItem("item " + i, R.raw.kava));
         }
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("category"));

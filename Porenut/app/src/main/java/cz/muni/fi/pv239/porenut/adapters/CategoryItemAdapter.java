@@ -1,13 +1,12 @@
 package cz.muni.fi.pv239.porenut.adapters;
 
 import android.content.Context;
-import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
-import cz.muni.fi.pv239.porenut.activities.CategoryListActivity;
 import cz.muni.fi.pv239.porenut.entities.CategoryItem;
 
 /**
@@ -45,19 +43,19 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
         this.categoryItemList = userList;
     }
 
-
     @Override
     public CategoryItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_card_view, parent,false);
         context = parent.getContext();
         // Get the TextView reference from RecyclerView current item
         final TextView textView = (TextView) v.findViewById(R.id.text_view);
+
         textView.setTextSize(20);
         int pixels = textView.getLineCount() * textView.getLineHeight() +  10 ;
         textView.setHeight(pixels);
-
         final ImageView imgView = (ImageView) v.findViewById(R.id.img);
         imgView.setImageResource(R.mipmap.ic_launcher);
+        final ViewHolder vh = new ViewHolder(v);
         // Set a click listener for the current item of RecyclerView
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +70,11 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
                         "Clicked : " + string,
                         Toast.LENGTH_SHORT
                 ).show();
+
+                MediaPlayer mp = MediaPlayer.create(context, categoryItemList.get(vh.getAdapterPosition()).getAudioFileId());
+                mp.start();
             }
         });
-
-        ViewHolder vh = new ViewHolder(v);
 
         // Return the ViewHolder
         return vh;

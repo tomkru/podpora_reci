@@ -21,7 +21,7 @@ public class CategoryListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category_list);
 
         List<CategoryItem> items = new ArrayList<>();
-        categoryItems = (ListView) findViewById(R.id.category_list);
+        categoryItems = (ListView) findViewById(R.id.category_recycler_view);
         for(int i = 0; i < 15; i++){
             items.add(new CategoryItem("item " + i));
         }

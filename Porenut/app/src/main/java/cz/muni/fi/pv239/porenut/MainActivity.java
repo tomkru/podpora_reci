@@ -1,6 +1,7 @@
 package cz.muni.fi.pv239.porenut;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.muni.fi.pv239.porenut.activities.textToSpeechActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -118,6 +121,8 @@ public class MainActivity extends AppCompatActivity
                     "Activita pro psani na klavesnici",
                     Toast.LENGTH_SHORT
             ).show();
+            Intent intent = new Intent(mContext, textToSpeechActivity.class);
+            mContext.startActivity(intent);
         } else if (id == R.id.nav_recently_used) {
             Toast.makeText(
                     mContext,

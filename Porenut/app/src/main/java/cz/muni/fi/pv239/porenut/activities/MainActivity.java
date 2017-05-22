@@ -1,6 +1,7 @@
 package cz.muni.fi.pv239.porenut.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,15 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cz.muni.fi.pv239.porenut.Initializer;
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.Utility;
 import cz.muni.fi.pv239.porenut.adapters.CategoryAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 
@@ -43,7 +42,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Realm.init(this);
-        mRealm = Realm.getDefaultInstance();
+
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("myrealm.realm")
+                .build();
+
+
+        //mRealm = Realm.getDefaultInstance();
+        mRealm = Realm.getInstance(config);
+
         Initializer.initCategory(mRealm, "Pozdravy");
         Initializer.initCategory(mRealm, "Jídlo");
         Initializer.initCategory(mRealm, "Pití");
@@ -130,6 +137,8 @@ public class MainActivity extends AppCompatActivity
                     "Activita pro psani na klavesnici",
                     Toast.LENGTH_SHORT
             ).show();
+            Intent intent = new Intent(this, textToSpeechActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_recently_used) {
             Toast.makeText(
                     mContext,

@@ -21,4 +21,8 @@ public class Initializer {
     public static void initCategoryItem(Realm realm, String text) {
 
     }
+
+    public static void initCategoryItem(Realm realm, String text, int audioFileId) {
+
+    }
 }
