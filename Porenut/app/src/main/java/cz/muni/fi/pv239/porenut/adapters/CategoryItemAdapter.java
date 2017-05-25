@@ -49,10 +49,11 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
         context = parent.getContext();
         // Get the TextView reference from RecyclerView current item
         final TextView textView = (TextView) v.findViewById(R.id.text_view);
+        
+//        textView.setTextSize(20);
+//        int pixels = textView.getLineCount() * textView.getLineHeight() +  10 ;
+//        textView.setHeight(pixels);
 
-        textView.setTextSize(20);
-        int pixels = textView.getLineCount() * textView.getLineHeight() +  10 ;
-        textView.setHeight(pixels);
         final ImageView imgView = (ImageView) v.findViewById(R.id.img);
         imgView.setImageResource(R.mipmap.ic_launcher);
         final ViewHolder vh = new ViewHolder(v);

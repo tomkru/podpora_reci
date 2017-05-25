@@ -51,7 +51,7 @@ public class CategoryListActivity extends AppCompatActivity {
 
         context = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.category_recycler_view);
-        mLayoutManager = new GridLayoutManager(context, 1); //Utility.calculateNoOfColumns(context));
+        mLayoutManager = new GridLayoutManager(context, getResources().getInteger(R.integer.column)); //Utility.calculateNoOfColumns(context));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
