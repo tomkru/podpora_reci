@@ -49,7 +49,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
         context = parent.getContext();
         // Get the TextView reference from RecyclerView current item
         final TextView textView = (TextView) v.findViewById(R.id.text_view);
-        
+
 //        textView.setTextSize(20);
 //        int pixels = textView.getLineCount() * textView.getLineHeight() +  10 ;
 //        textView.setHeight(pixels);
