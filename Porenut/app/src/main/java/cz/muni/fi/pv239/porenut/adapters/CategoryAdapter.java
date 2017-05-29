@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView mCardView;
         public TextView mTextView;
+        public ImageView mImageView;
 
         public ViewHolder(View v){
             super(v);
             mCardView = (CardView) v.findViewById(R.id.card_view);
-            mTextView = (TextView) v.findViewById(R.id.text_view);
+            mTextView = (TextView) v.findViewById(R.id.category_text_view);
+            mImageView = (ImageView) v.findViewById(R.id.category_image_view);
         }
     }
 
@@ -48,7 +51,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         View v = LayoutInflater.from(mContext).inflate(R.layout.card_view, parent,false);
         mContext = parent.getContext();
         // Get the TextView reference from RecyclerView current item
-        final TextView textView = (TextView) v.findViewById(R.id.text_view);
+        final TextView textView = (TextView) v.findViewById(R.id.category_text_view);
+        final ImageView imageView = (ImageView) v.findViewById(R.id.category_image_view);
+        imageView.setImageResource(R.mipmap.ic_launcher);
 
         // Set a click listener for the current item of RecyclerView
         v.setOnClickListener(new View.OnClickListener() {

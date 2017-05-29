@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import cz.muni.fi.pv239.porenut.Initializer;
 import cz.muni.fi.pv239.porenut.R;
-import cz.muni.fi.pv239.porenut.Utility;
+import cz.muni.fi.pv239.porenut.SpacesItemDecoration;
 import cz.muni.fi.pv239.porenut.adapters.CategoryAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import io.realm.Realm;
@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity
 
         mContext = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mLayoutManager = new GridLayoutManager(mContext, Utility.calculateNoOfColumns(mContext));
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getInteger(R.integer.padding)));
+        mLayoutManager = new GridLayoutManager(mContext, getResources().getInteger(R.integer.column));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         RealmResults<Category> categories = mRealm.where(Category.class).findAll();

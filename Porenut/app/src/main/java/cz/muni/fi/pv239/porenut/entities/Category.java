@@ -28,6 +28,8 @@ public class Category extends RealmObject {
         this.title = title;
     }
 
+
+
 //    public List<CategoryItem> getItems() {
 //        return items;
 //    }
