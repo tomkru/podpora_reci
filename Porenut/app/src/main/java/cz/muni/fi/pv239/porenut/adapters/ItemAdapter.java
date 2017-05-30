@@ -20,7 +20,7 @@ import cz.muni.fi.pv239.porenut.entities.CategoryItem;
  * Created by pato on 2.4.2017.
  */
 
-public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapter.ViewHolder>  {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     public Context context;
     public List<CategoryItem> categoryItemList;
     private int mCounter = 1;
@@ -38,13 +38,13 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
         }
     }
 
-    public CategoryItemAdapter(Context context, List<CategoryItem> userList) {
+    public ItemAdapter(Context context, List<CategoryItem> userList) {
         this.context = context;
         this.categoryItemList = userList;
     }
 
     @Override
-    public CategoryItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_card_view, parent,false);
         context = parent.getContext();
         // Get the TextView reference from RecyclerView current item
@@ -82,7 +82,7 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
     }
 
     @Override
-    public void onBindViewHolder(CategoryItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
         // Get the current item from the data set
         String string = categoryItemList.get(position).getText();
 

@@ -11,13 +11,13 @@ import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.CategoryItem;
-import cz.muni.fi.pv239.porenut.adapters.CategoryItemAdapter;
+import cz.muni.fi.pv239.porenut.adapters.ItemAdapter;
 
 /**
  * Created by pcyprian on 2.4.2017.
  */
 
-public class CategoryListActivity extends AppCompatActivity {
+public class ItemActivity extends AppCompatActivity {
 
     private Context context;
     private RecyclerView mRecyclerView;
@@ -27,7 +27,7 @@ public class CategoryListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_list);
+        setContentView(R.layout.activity_item);
 
         List<CategoryItem> items = new ArrayList<>();
         for(int i = 0; i < 15; i++){
@@ -44,7 +44,7 @@ public class CategoryListActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-        mAdapter = new CategoryItemAdapter(context, items);
+        mAdapter = new ItemAdapter(context, items);
         mRecyclerView.setAdapter(mAdapter);
 
     }

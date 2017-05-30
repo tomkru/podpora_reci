@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import cz.muni.fi.pv239.porenut.R;
 
-public class textToSpeechActivity extends AppCompatActivity {
+public class TextToSpeechActivity extends AppCompatActivity {
     TextToSpeech t1;
     Button b1;
     EditText et1;

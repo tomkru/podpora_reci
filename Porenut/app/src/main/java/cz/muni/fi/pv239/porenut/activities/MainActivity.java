@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
+                .deleteRealmIfMigrationNeeded()
                 .build();
 
 
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity
                     "Activita pro psani na klavesnici",
                     Toast.LENGTH_SHORT
             ).show();
-            Intent intent = new Intent(this, textToSpeechActivity.class);
+            Intent intent = new Intent(this, TextToSpeechActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_recently_used) {
             Toast.makeText(

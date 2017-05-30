@@ -18,12 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CategoryListActivity">
+        <activity android:name=".activities.ItemActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.textToSpeechActivity"></activity>
+        <activity android:name=".activities.TextToSpeechActivity"></activity>
     </application>
 
 </manifest>

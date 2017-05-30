@@ -15,7 +15,7 @@ import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
-import cz.muni.fi.pv239.porenut.activities.CategoryListActivity;
+import cz.muni.fi.pv239.porenut.activities.ItemActivity;
 import io.realm.OrderedRealmCollection;
 
 /**
@@ -69,7 +69,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         "Clicked : " + string,
                         Toast.LENGTH_SHORT
                 ).show();
-                Intent intent = new Intent(mContext, CategoryListActivity.class);
+                Intent intent = new Intent(mContext, ItemActivity.class);
                 intent.putExtra("category", textView.getText().toString());
                 mContext.startActivity(intent);
             }
