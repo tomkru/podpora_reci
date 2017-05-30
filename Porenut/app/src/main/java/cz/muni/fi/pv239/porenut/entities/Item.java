@@ -6,15 +6,15 @@ import io.realm.RealmObject;
  * Created by pcyprian on 2.4.2017.
  */
 
-public class CategoryItem extends RealmObject {
+public class Item extends RealmObject {
     private String text;
     private int audioFileId;
 
-    public CategoryItem(){}
+    public Item(){}
 
-    public CategoryItem(String text) { this.text = text; }
+    public Item(String text) { this.text = text; }
 
-    public CategoryItem(String text, int audioFileId) {
+    public Item(String text, int audioFileId) {
         this.text = text;
         this.audioFileId = audioFileId;
     }

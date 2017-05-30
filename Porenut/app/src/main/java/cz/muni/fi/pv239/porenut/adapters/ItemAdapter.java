@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
-import cz.muni.fi.pv239.porenut.entities.CategoryItem;
+import cz.muni.fi.pv239.porenut.entities.Item;
 
 /**
  * Created by pato on 2.4.2017.
@@ -22,7 +22,7 @@ import cz.muni.fi.pv239.porenut.entities.CategoryItem;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     public Context context;
-    public List<CategoryItem> categoryItemList;
+    public List<Item> categoryItemList;
     private int mCounter = 1;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -38,7 +38,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         }
     }
 
-    public ItemAdapter(Context context, List<CategoryItem> userList) {
+    public ItemAdapter(Context context, List<Item> userList) {
         this.context = context;
         this.categoryItemList = userList;
     }

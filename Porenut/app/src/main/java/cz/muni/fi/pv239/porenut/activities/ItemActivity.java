@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
-import cz.muni.fi.pv239.porenut.entities.CategoryItem;
 import cz.muni.fi.pv239.porenut.adapters.ItemAdapter;
+import cz.muni.fi.pv239.porenut.entities.Item;
 
 /**
  * Created by pcyprian on 2.4.2017.
@@ -29,10 +29,10 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        List<CategoryItem> items = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
         for(int i = 0; i < 15; i++){
-            if (i % 2 == 0 )items.add(new CategoryItem("item item test testt testestetestestsetetse " + i, R.raw.dobry_den));
-            else items.add(new CategoryItem("item " + i, R.raw.kava));
+            if (i % 2 == 0 )items.add(new Item("item item test testt testestetestestsetetse " + i, R.raw.dobry_den));
+            else items.add(new Item("item " + i, R.raw.kava));
         }
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("category"));
