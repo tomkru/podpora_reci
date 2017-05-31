@@ -10,14 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.List;
-
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.activities.ItemActivity;
 import io.realm.OrderedRealmCollection;
-import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
@@ -55,15 +52,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.card_view, parent,false);
         mContext = parent.getContext();
-        // Get the TextView reference from RecyclerView current item
+
+
+        /* TODO delete
         final TextView textView = (TextView) v.findViewById(R.id.category_text_view);
         final ImageView imageView = (ImageView) v.findViewById(R.id.category_image_view);
-        imageView.setImageResource(R.mipmap.ic_launcher);
-
-        // Set a click listener for the current item of RecyclerView
+        imageView.setImageResource(R.mipmap.ic_launcher);*/
 
         ViewHolder vh = new ViewHolder(v);
-        // Return the ViewHolder
         return vh;
     }
 
@@ -71,18 +67,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(CategoryAdapter.ViewHolder holder, int position) {
         // Get the current item from the data set
         final Category category = mDataSet.get(position);
-        String string = category.getTitle();
 
-        // Set the TextView widgets text
-        holder.mTextView.setText(string);
+        holder.mTextView.setText(category.getTitle());
+        holder.mImageView.setImageResource(R.mipmap.ic_launcher);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickSubject.onNext(category);
-                Toast.makeText(mContext, category.getTitle(), Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, category.getTitle()+" "+category.getId(), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(mContext, ItemActivity.class);
-                intent.putExtra("category", category.getTitle());
+                intent.putExtra("categoryTitle", category.getTitle());
+                intent.putExtra("categoryId", category.getId());
                 mContext.startActivity(intent);
             }
         });

@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorCategoryCardDefault">#c9f2f7</color>
+    <color name="colorItemCardDefault">#c9e2f7</color>
+    <color name="colorCategoryTextDefault">#000000</color>
 </resources>

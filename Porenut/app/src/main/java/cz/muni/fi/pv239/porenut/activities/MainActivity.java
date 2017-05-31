@@ -2,6 +2,7 @@ package cz.muni.fi.pv239.porenut.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,26 +44,35 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = getApplicationContext();
 
         Realm.init(this);
-
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
                 .deleteRealmIfMigrationNeeded()
                 .build();
 
-
-        //mRealm = Realm.getDefaultInstance();
         mRealm = Realm.getInstance(config);
 
-        Initializer.initCategory(mRealm, 1, "Pozdravy");
-        Initializer.initCategory(mRealm, 2, "Jídlo");
-        Initializer.initCategory(mRealm, 3, "Pití");
-        Initializer.initCategory(mRealm, 4, "Potřeby");
-        Initializer.initCategory(mRealm, 5, "Pomoc");
-        Initializer.initCategory(mRealm, 6, "Zábava");
+        final String PREFS_NAME = "MyPrefsFile";
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
-        mContext = getApplicationContext();
+        // uncomment for simulate first time run
+        // settings.edit().putBoolean("my_first_time", true).commit();
+        if (settings.getBoolean("my_first_time", true)) {
+            Toast.makeText(mContext, "Inicializuji DB", Toast.LENGTH_LONG).show();
+            settings.edit().putBoolean("my_first_time", false).commit();
+
+            mRealm.beginTransaction();
+            mRealm.deleteAll();
+            mRealm.commitTransaction();
+
+            Initializer initializer = new Initializer(mRealm, mContext);
+            initializer.initData();
+
+            // TODO tady se provede inicializace DB podle localu
+        }
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(getResources().getInteger(R.integer.padding)));
         mLayoutManager = new GridLayoutManager(mContext, getResources().getInteger(R.integer.column));

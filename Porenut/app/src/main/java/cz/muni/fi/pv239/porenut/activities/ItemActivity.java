@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.adapters.ItemAdapter;
 import cz.muni.fi.pv239.porenut.entities.Item;
@@ -35,7 +33,7 @@ public class ItemActivity extends AppCompatActivity {
             else items.add(new Item("item " + i, R.raw.kava));
         }
 
-        getSupportActionBar().setTitle(getIntent().getStringExtra("category"));
+        getSupportActionBar().setTitle(getIntent().getStringExtra("categoryTitle"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = getApplicationContext();

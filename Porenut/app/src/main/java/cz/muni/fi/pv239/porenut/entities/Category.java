@@ -2,6 +2,7 @@ package cz.muni.fi.pv239.porenut.entities;
 
 import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -11,14 +12,36 @@ import io.realm.annotations.PrimaryKey;
 
 public class Category extends RealmObject {
 
+    @PrimaryKey
     private long id;
     private String title;
-//    private List<CategoryItem> items;
+    private long order;
+    private long counter;
+    private int cardColor;
+    private int textColor;
+    private int icon;
+    private RealmList<Item> items;
 
     public Category() {}
 
-    public Category(String title) {
+    /*
+    public Category(long id, String title, int cardColor, int textColor, int icon, RealmList items) {
+        this.id = id;
         this.title = title;
+        this.order = id;
+        this.counter = 0;
+        this.cardColor = cardColor;
+        this.textColor = textColor;
+        this.icon = icon;
+        this.items = items;
+    }*/
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -29,18 +52,51 @@ public class Category extends RealmObject {
         this.title = title;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public long getOrder() {
+        return order;
     }
 
+    public void setOrder(long order) {
+        this.order = order;
+    }
 
+    public long getCounter() {
+        return counter;
+    }
 
+    public void setCounter(long counter) {
+        this.counter = counter;
+    }
 
-//    public List<CategoryItem> getItems() {
-//        return items;
-//    }
-//
-//    public void setItems(List<CategoryItem> items) {
-//        this.items = items;
-//    }
+    public int getCardColor() {
+        return cardColor;
+    }
+
+    public void setCardColor(int cardColor) {
+        this.cardColor = cardColor;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+
+    public RealmList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(RealmList<Item> items) {
+        this.items = items;
+    }
 }
