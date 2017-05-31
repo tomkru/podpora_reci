@@ -11,6 +11,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class Category extends RealmObject {
 
+    private long id;
     private String title;
 //    private List<CategoryItem> items;
 
@@ -27,6 +28,11 @@ public class Category extends RealmObject {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 
 
 

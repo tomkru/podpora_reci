@@ -34,8 +34,10 @@ public class MainActivity extends AppCompatActivity
     private Context mContext;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private CategoryAdapter mAdapter;
     private Realm mRealm;
+    private RealmResults<Category> categories;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +54,12 @@ public class MainActivity extends AppCompatActivity
         //mRealm = Realm.getDefaultInstance();
         mRealm = Realm.getInstance(config);
 
-        Initializer.initCategory(mRealm, "Pozdravy");
-        Initializer.initCategory(mRealm, "Jídlo");
-        Initializer.initCategory(mRealm, "Pití");
-        Initializer.initCategory(mRealm, "Potřeby");
-        Initializer.initCategory(mRealm, "Pomoc");
-        Initializer.initCategory(mRealm, "Zábava");
+        Initializer.initCategory(mRealm, 1, "Pozdravy");
+        Initializer.initCategory(mRealm, 2, "Jídlo");
+        Initializer.initCategory(mRealm, 3, "Pití");
+        Initializer.initCategory(mRealm, 4, "Potřeby");
+        Initializer.initCategory(mRealm, 5, "Pomoc");
+        Initializer.initCategory(mRealm, 6, "Zábava");
 
         mContext = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         mLayoutManager = new GridLayoutManager(mContext, getResources().getInteger(R.integer.column));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        RealmResults<Category> categories = mRealm.where(Category.class).findAll();
+        categories = mRealm.where(Category.class).findAll();
 
         mAdapter = new CategoryAdapter(mContext,categories);
         mRecyclerView.setAdapter(mAdapter);

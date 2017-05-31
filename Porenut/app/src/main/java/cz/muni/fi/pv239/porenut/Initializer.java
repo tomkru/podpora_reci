@@ -11,9 +11,10 @@ import io.realm.Realm;
  */
 
 public class Initializer {
-    public static void initCategory(Realm realm, String name) {
+    public static void initCategory(Realm realm, long id, String name) {
         realm.beginTransaction();
         Category cat = realm.createObject(Category.class);
+        cat.setId(id);
         cat.setTitle(name);
         realm.commitTransaction();
     }

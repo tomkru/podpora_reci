@@ -17,6 +17,8 @@ import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.activities.ItemActivity;
 import io.realm.OrderedRealmCollection;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /**
  * Created by Josef Pavelec on 29/03/17.
@@ -26,7 +28,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     private Context mContext;
     private List<Category> mDataSet;
-    private int mCounter = 1;
+    private final PublishSubject<Category> onClickSubject = PublishSubject.create();
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView mCardView;
@@ -44,6 +48,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public CategoryAdapter(Context mContext, OrderedRealmCollection<Category> mDataSet) {
         this.mContext = mContext;
         this.mDataSet = mDataSet;
+
     }
 
     @Override
@@ -56,24 +61,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         imageView.setImageResource(R.mipmap.ic_launcher);
 
         // Set a click listener for the current item of RecyclerView
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get the RecyclerView current item serial and text
-                final String string = textView.getText().toString();
-
-
-                // Display the RecyclerView clicked item serial and label
-                Toast.makeText(
-                        mContext,
-                        "Clicked : " + string,
-                        Toast.LENGTH_SHORT
-                ).show();
-                Intent intent = new Intent(mContext, ItemActivity.class);
-                intent.putExtra("category", textView.getText().toString());
-                mContext.startActivity(intent);
-            }
-        });
 
         ViewHolder vh = new ViewHolder(v);
         // Return the ViewHolder
@@ -83,14 +70,29 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(CategoryAdapter.ViewHolder holder, int position) {
         // Get the current item from the data set
-        String string = mDataSet.get(position).getTitle();
+        final Category category = mDataSet.get(position);
+        String string = category.getTitle();
 
         // Set the TextView widgets text
         holder.mTextView.setText(string);
 
-        // Increase the counter
-        mCounter +=1;
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickSubject.onNext(category);
+                Toast.makeText(mContext, category.getTitle(), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(mContext, ItemActivity.class);
+                intent.putExtra("category", category.getTitle());
+                mContext.startActivity(intent);
+            }
+        });
+
     }
+
+    /* TODO delete when will be unused
+    public Observable<Category> getPositionClicks(){
+        return onClickSubject.asObservable();
+    }*/
 
     @Override
     public int getItemCount() {
