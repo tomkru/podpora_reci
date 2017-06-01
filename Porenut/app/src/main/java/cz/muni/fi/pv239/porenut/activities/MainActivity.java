@@ -3,6 +3,7 @@ package cz.muni.fi.pv239.porenut.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -46,10 +47,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
 
+
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
-                .deleteRealmIfMigrationNeeded()
+                //.deleteRealmIfMigrationNeeded()
                 .build();
 
         mRealm = Realm.getInstance(config);
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
         // uncomment for simulate first time run
-        // settings.edit().putBoolean("my_first_time", true).commit();
+        settings.edit().putBoolean("my_first_time", true).commit();
         if (settings.getBoolean("my_first_time", true)) {
             Toast.makeText(mContext, "Inicializuji DB", Toast.LENGTH_LONG).show();
             settings.edit().putBoolean("my_first_time", false).commit();
@@ -69,8 +71,6 @@ public class MainActivity extends AppCompatActivity
 
             Initializer initializer = new Initializer(mRealm, mContext);
             initializer.initData();
-
-            // TODO tady se provede inicializace DB podle localu
         }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -79,6 +79,11 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         categories = mRealm.where(Category.class).findAll();
+
+        //TODO delete
+        Category category = mRealm.where(Category.class).equalTo("id",1).findFirst();
+        Log.d("MainActivity", "Category with id 1 has title " + category.getTitle() +" and "
+                +category.getItems().size() + " items");
 
         mAdapter = new CategoryAdapter(mContext,categories);
         mRecyclerView.setAdapter(mAdapter);
@@ -176,6 +181,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mRealm.close();
+        // TODO uncomment
+        //mRealm.close();
     }
 }

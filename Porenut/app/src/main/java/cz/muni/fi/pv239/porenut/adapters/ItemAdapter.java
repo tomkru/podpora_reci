@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Item;
+import io.realm.OrderedRealmCollection;
 
 /**
  * Created by pato on 2.4.2017.
@@ -22,8 +24,7 @@ import cz.muni.fi.pv239.porenut.entities.Item;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     public Context context;
-    public List<Item> categoryItemList;
-    private int mCounter = 1;
+    public List<Item> mDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView mCardView;
@@ -32,15 +33,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
 
         public ViewHolder(View v){
             super(v);
-            mCardView = (CardView) v.findViewById(R.id.card_view);
+            mCardView = (CardView) v.findViewById(R.id.item_card_view);
             mTextView = (TextView) v.findViewById(R.id.text_view);
             mImageView = (ImageView) v.findViewById(R.id.img);
         }
     }
 
-    public ItemAdapter(Context context, List<Item> userList) {
+    public ItemAdapter(Context context, OrderedRealmCollection<Item> mDataSet) {
         this.context = context;
-        this.categoryItemList = userList;
+        this.mDataSet = mDataSet;
+        Log.d("ItemAdapt","Item list length "+mDataSet.size());
     }
 
     @Override
@@ -49,10 +51,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         context = parent.getContext();
         // Get the TextView reference from RecyclerView current item
         final TextView textView = (TextView) v.findViewById(R.id.text_view);
-
-//        textView.setTextSize(20);
-//        int pixels = textView.getLineCount() * textView.getLineHeight() +  10 ;
-//        textView.setHeight(pixels);
 
         final ImageView imgView = (ImageView) v.findViewById(R.id.img);
         imgView.setImageResource(R.mipmap.ic_launcher);
@@ -72,7 +70,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
                         Toast.LENGTH_SHORT
                 ).show();
 
-                MediaPlayer mp = MediaPlayer.create(context, categoryItemList.get(vh.getAdapterPosition()).getAudioFileId());
+                MediaPlayer mp = MediaPlayer.create(context, mDataSet.get(vh.getAdapterPosition()).getAudioFileId());
                 mp.start();
             }
         });
@@ -84,13 +82,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     @Override
     public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
         // Get the current item from the data set
-        String string = categoryItemList.get(position).getText();
+        String string = mDataSet.get(position).getText();
 
         // Set the TextView widgets text
         holder.mTextView.setText(string);
-
-        // Increase the counter
-        mCounter +=1;
     }
 
     @Override
@@ -100,19 +95,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
 
     @Override
     public int getItemCount() {
-        return categoryItemList.size();
+        return mDataSet.size();
     }
-
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        if (convertView == null) {
-//            convertView = LayoutInflater.from(context).inflate(R.layout.category_item, parent, false);
-//        }
-//
-//        CategoryItem item = (CategoryItem) getItem(position);
-//        TextView name = (TextView) convertView.findViewById(R.id.text);
-//        name.setText(item.text);
-//
-//        return convertView;
-//    }
 }
