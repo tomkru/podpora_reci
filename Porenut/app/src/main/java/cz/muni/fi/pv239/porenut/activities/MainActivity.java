@@ -29,6 +29,7 @@ import cz.muni.fi.pv239.porenut.entities.Category;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 
 public class MainActivity extends AppCompatActivity
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
-                //.deleteRealmIfMigrationNeeded()
+                .deleteRealmIfMigrationNeeded()
                 .build();
 
         mRealm = Realm.getInstance(config);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
         // uncomment for simulate first time run
-        settings.edit().putBoolean("my_first_time", true).commit();
+        //settings.edit().putBoolean("my_first_time", true).commit();
         if (settings.getBoolean("my_first_time", true)) {
             Toast.makeText(mContext, "Inicializuji DB", Toast.LENGTH_LONG).show();
             settings.edit().putBoolean("my_first_time", false).commit();
@@ -79,6 +80,10 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         categories = mRealm.where(Category.class).findAll();
+
+        // TODO sort by order/counter
+        //categories = categories.sort("order", Sort.ASCENDING);
+        categories = categories.sort("counter", Sort.DESCENDING);
 
         //TODO delete
         Category category = mRealm.where(Category.class).equalTo("id",1).findFirst();
@@ -165,6 +170,12 @@ public class MainActivity extends AppCompatActivity
                     "Activita pro posledni pouzite",
                     Toast.LENGTH_SHORT
             ).show();
+        } else if (id == R.id.nav_sort_by_order) {
+            Toast.makeText(
+                    mContext,
+                    "Acitivat pro serazeni podle oblibenosti",
+                    Toast.LENGTH_SHORT
+            ).show();
         } else if (id == R.id.nav_auth) {
             Toast.makeText(
                     mContext,
@@ -181,7 +192,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // TODO uncomment
-        //mRealm.close();
+        mRealm.close();
     }
 }

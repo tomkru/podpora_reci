@@ -6,7 +6,7 @@ import android.util.Log;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.Realm;
-import io.realm.RealmList;
+
 
 /**
  * Created by pato on 1.5.2017.
@@ -24,30 +24,37 @@ public class Initializer {
         // TODO load items from json and add items to Category constructor
         mRealm.beginTransaction();
         Item item = new Item();
-        item.setId("dobryden");
+        item.setId("dobry_den");
         item.setText("Dobry den");
         item.setCounter(0);
         item.setOrder(1);
-        //item.setAudioFileId(R.raw.dobry_den);
         item.setAudioFileId(mContext.getResources().getIdentifier(item.getId(), "raw", mContext.getPackageName()));
         item.setTextColor(R.color.colorCategoryTextDefault);
         item.setCardColor(R.color.colorCategoryCardDefault);
         Item managedItem = mRealm.copyToRealm(item);
-        mRealm.commitTransaction();
-        mRealm.beginTransaction();
+
         Category category = new Category();
         category.setId(1);
         category.setTitle(mContext.getResources().getString(R.string.cat1));
         category.setOrder(1);
         category.setCounter(0);
         category.setTextColor(mContext.getResources().getColor(R.color.colorCategoryTextDefault));
-        category.setCardColor(mContext.getResources().getColor(R.color.colorCategoryCardDefault));
+        category.setCardColor(mContext.getResources().getColor(R.color.colorPrimary));
         category.setIcon(R.mipmap.ic_launcher);
         Category managedCategory = mRealm.copyToRealm(category);
         managedCategory.getItems().add(managedItem);
-        mRealm.commitTransaction();
 
-        mRealm.beginTransaction();
+
+        item = new Item();
+        item.setId("kava");
+        item.setText("Muzu poprosit o kavu");
+        item.setCounter(0);
+        item.setOrder(2);
+        item.setAudioFileId(mContext.getResources().getIdentifier(item.getId(), "raw", mContext.getPackageName()));
+        item.setTextColor(R.color.colorCategoryTextDefault);
+        item.setCardColor(R.color.colorCategoryCardDefault);
+        managedItem = mRealm.copyToRealm(item);
+
         category = new Category();
         category.setId(2);
         category.setTitle(mContext.getResources().getString(R.string.cat2));
@@ -56,9 +63,22 @@ public class Initializer {
         category.setTextColor(mContext.getResources().getColor(R.color.colorCategoryTextDefault));
         category.setCardColor(mContext.getResources().getColor(R.color.colorCategoryCardDefault));
         category.setIcon(R.mipmap.ic_launcher);
-        mRealm.copyToRealm(category);
+        managedCategory = mRealm.copyToRealm(category);
+        managedCategory.getItems().add(managedItem);
+
+        item = new Item();
+        item.setId("kava2");
+        item.setText("Muzu poprosit o caj");
+        item.setCounter(0);
+        item.setOrder(3);
+        item.setAudioFileId(mContext.getResources().getIdentifier("kava", "raw", mContext.getPackageName()));
+        item.setTextColor(R.color.colorCategoryTextDefault);
+        item.setCardColor(R.color.colorPrimary);
+        managedItem = mRealm.copyToRealm(item);
+        managedCategory.getItems().add(managedItem);
         mRealm.commitTransaction();
     }
+
 
 
 }

@@ -16,7 +16,6 @@ import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.activities.ItemActivity;
 import io.realm.OrderedRealmCollection;
-import rx.subjects.PublishSubject;
 
 /**
  * Created by Josef Pavelec on 29/03/17.
@@ -26,8 +25,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     private Context mContext;
     private List<Category> mDataSet;
-    private final PublishSubject<Category> onClickSubject = PublishSubject.create();
-
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -53,14 +50,29 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public CategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.card_view, parent,false);
         mContext = parent.getContext();
+        final ViewHolder vh = new ViewHolder(v);
 
+        // Set a click listener for the current item of RecyclerView
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Category clickedCategory = mDataSet.get(vh.getAdapterPosition());
+                Log.d("Category adapter","Click on category with id "+clickedCategory.getId());
 
-        /* TODO delete
-        final TextView textView = (TextView) v.findViewById(R.id.category_text_view);
-        final ImageView imageView = (ImageView) v.findViewById(R.id.category_image_view);
-        imageView.setImageResource(R.mipmap.ic_launcher);*/
+                Toast.makeText(
+                        mContext,
+                        "Clicked : " + clickedCategory.getId() +
+                        ", counter: " + clickedCategory.getCounter() +
+                        ", order: " + clickedCategory.getOrder(),
+                        Toast.LENGTH_SHORT
+                ).show();
+                Intent intent = new Intent(mContext, ItemActivity.class);
+                intent.putExtra("categoryId", clickedCategory.getId());
 
-        ViewHolder vh = new ViewHolder(v);
+                mContext.startActivity(intent);
+            }
+        });
+
         return vh;
     }
 
@@ -74,25 +86,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.mCardView.setCardBackgroundColor(category.getCardColor());
         holder.mImageView.setImageResource(R.mipmap.ic_launcher);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickSubject.onNext(category);
-                Toast.makeText(mContext, "pocet itemu "+category.getItems().size(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(mContext, ItemActivity.class);
-                //intent.putExtra("categoryTitle", category.getTitle());
-                Log.d("CategoryAdapter","passing out id "+category.getId());
-                intent.putExtra("categoryId", category.getId());
-                mContext.startActivity(intent);
-            }
-        });
-
     }
-
-    /* TODO delete when will be unused
-    public Observable<Category> getPositionClicks(){
-        return onClickSubject.asObservable();
-    }*/
 
     @Override
     public int getItemCount() {
