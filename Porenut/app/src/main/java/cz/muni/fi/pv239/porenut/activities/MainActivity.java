@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import cz.muni.fi.pv239.porenut.FirstRun;
 import cz.muni.fi.pv239.porenut.Initializer;
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.SpacesItemDecoration;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         // uncomment for simulate first time run
         //settings.edit().putBoolean("my_first_time", true).commit();
         if (settings.getBoolean("my_first_time", true)) {
-            Toast.makeText(mContext, "Inicializuji DB", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "Inicializuji DB", Toast.LENGTH_SHORT).show();
             settings.edit().putBoolean("my_first_time", false).commit();
 
             mRealm.beginTransaction();
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity
 
             Initializer initializer = new Initializer(mRealm, mContext);
             initializer.initData();
+
+            Intent intent = new Intent(mContext, FirstRun.class);
+            this.startActivity(intent);
         }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity
 
         mAdapter = new CategoryAdapter(mContext,categories);
         mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @Override

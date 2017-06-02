@@ -23,7 +23,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.TextToSpeechActivity"></activity>
+        <activity android:name=".activities.TextToSpeechActivity" />
+        <activity android:name=".FirstRun"></activity>
     </application>
 
 </manifest>
