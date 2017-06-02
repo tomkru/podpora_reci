@@ -30,6 +30,7 @@ public class ItemActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private Realm mRealm;
     private RealmList<Item> items;
+    private boolean isAll = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,23 +52,34 @@ public class ItemActivity extends AppCompatActivity {
             Log.e("ItemActivity","Realm is null");
         }
 
-        Category category = mRealm.where(Category.class).equalTo("id",getIntent()
-                                    .getLongExtra("categoryId",Long.MIN_VALUE)).findFirst();
-        if (category == null) {
-            Log.e("ItemActivity","Category wasn't found");
+        Category category = null;
+        if(getIntent().getLongExtra("categoryId", -1) != -1) {
+            category = mRealm.where(Category.class).equalTo("id",getIntent()
+                    .getLongExtra("categoryId",Long.MIN_VALUE)).findFirst();
+            if (category == null) {
+                Log.e("ItemActivity","Category wasn't found");
+            }
+            items = category.getItems();
         }
-        items = category.getItems();
+
+
         final String PREFS_NAME = "MyPrefsFile";
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         RealmResults<Item> sortedItems;
-        if (settings.getBoolean("order", true)) {
-            sortedItems = items.sort("order", Sort.ASCENDING);
-        } else {
-            sortedItems = items.sort("counter", Sort.DESCENDING);
-        }
-        Log.d("ItemActivity","Category with id "+category.getId()+" has "+items.size()+" items");
 
-        getSupportActionBar().setTitle(category.getTitle());
+        if(getIntent().getLongExtra("categoryId", -1) == -1) {
+            getSupportActionBar().setTitle("All");
+            sortedItems = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
+            isAll = true;
+        } else {
+            Log.d("ItemActivity","Category with id "+category.getId()+" has "+items.size()+" items");
+            if (settings.getBoolean("order", true)) {
+                sortedItems = items.sort("order", Sort.ASCENDING);
+            } else {
+                sortedItems = items.sort("counter", Sort.DESCENDING);
+            }
+            getSupportActionBar().setTitle(category.getTitle());
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = getApplicationContext();
@@ -76,7 +88,7 @@ public class ItemActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-        mAdapter = new ItemAdapter(context, sortedItems);
+        mAdapter = new ItemAdapter(context, sortedItems, isAll);
         mRecyclerView.setAdapter(mAdapter);
 
     }

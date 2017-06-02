@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".activities.TextToSpeechActivity" />
         <activity android:name=".FirstRun"></activity>
+        <activity android:name=".activities.AdminModeActivity"></activity>
     </application>
 
 </manifest>

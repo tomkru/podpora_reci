@@ -6,4 +6,13 @@
     <color name="colorCategoryCardDefault">#c9f2f7</color>
     <color name="colorItemCardDefault">#c9e2f7</color>
     <color name="colorCategoryTextDefault">#000000</color>
+
+    <array name="colorArray">
+        <item name="Fialova">colorPrimary</item>
+        <item name="Modra">colorPrimaryDark</item>
+        <item name="Ruzova">colorAccent</item>
+        <item name="Svetlo Modra">colorCategoryCardDefault</item>
+        <item name="Seda">colorItemCardDefault</item>
+        <item name="Cierna">colorCategoryTextDefault</item>
+    </array>
 </resources>

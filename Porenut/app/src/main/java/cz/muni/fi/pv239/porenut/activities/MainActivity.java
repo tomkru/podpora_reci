@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity
         mContext = getApplicationContext();
 
 
-
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
@@ -229,6 +228,8 @@ public class MainActivity extends AppCompatActivity
                         "Administratorsky rezim",
                         Toast.LENGTH_SHORT
                 ).show();
+                Intent intent = new Intent(this, AdminModeActivity.class);
+                this.startActivity(intent);
                 break;
             }
             default:
