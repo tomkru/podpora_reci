@@ -16,6 +16,8 @@ import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.activities.ItemActivity;
 import io.realm.OrderedRealmCollection;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by Josef Pavelec on 29/03/17.
@@ -52,13 +54,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         mContext = parent.getContext();
         final ViewHolder vh = new ViewHolder(v);
 
+        Realm.init(mContext);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("myrealm.realm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        final Realm mRealm = Realm.getInstance(config);
+
         // Set a click listener for the current item of RecyclerView
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Category clickedCategory = mDataSet.get(vh.getAdapterPosition());
                 Log.d("Category adapter","Click on category with id "+clickedCategory.getId());
-
+                mRealm.beginTransaction();
+                clickedCategory.setCounter(clickedCategory.getCounter()+1);
+                mRealm.commitTransaction();
                 Toast.makeText(
                         mContext,
                         "Clicked : " + clickedCategory.getId() +
@@ -81,8 +93,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         // Get the current item from the data set
         final Category category = mDataSet.get(position);
 
-        holder.mTextView.setText(category.getTitle());
         holder.mTextView.setTextColor(category.getTextColor());
+        holder.mTextView.setText(category.getTitle());
         holder.mCardView.setCardBackgroundColor(category.getCardColor());
         holder.mImageView.setImageResource(R.mipmap.ic_launcher);
 

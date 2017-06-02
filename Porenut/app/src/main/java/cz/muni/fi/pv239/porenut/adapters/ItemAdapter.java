@@ -1,6 +1,7 @@
 package cz.muni.fi.pv239.porenut.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -8,15 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
+import cz.muni.fi.pv239.porenut.activities.MainActivity;
 import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.OrderedRealmCollection;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by pato on 2.4.2017.
@@ -54,6 +57,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         context = parent.getContext();
         final ViewHolder vh = new ViewHolder(v);
 
+        Realm.init(context);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("myrealm.realm")
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        final Realm mRealm = Realm.getInstance(config);
+
         // Set a click listener for the current item of RecyclerView
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,16 +73,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
                 final Item clickedItem = mDataSet.get(vh.getAdapterPosition());
 
                 Log.d("ItemAdapter","Click on item with id "+clickedItem.getId());
+                mRealm.beginTransaction();
+                clickedItem.setCounter(clickedItem.getCounter() + 1);
+                mRealm.commitTransaction();
 
                 // Display the RecyclerView clicked item serial and label
                 Toast.makeText(
                         context,
-                        "Clicked item: " + clickedItem.getAudioFileId(),
+                        "Clicked item: " + clickedItem.getAudioFileId() +
+                        ", counter: " + clickedItem.getCounter() +
+                        ", order: " + clickedItem.getOrder(),
                         Toast.LENGTH_SHORT
                 ).show();
 
                 MediaPlayer mp = MediaPlayer.create(context, clickedItem.getAudioFileId());
                 mp.start();
+
+                context.startActivity(new Intent(context, MainActivity.class));
             }
         });
 
@@ -83,8 +101,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         // Get the current item from the data set
         Item item = mDataSet.get(position);
         holder.mTextView.setText(item.getText());
-        holder.mTextView.setTextColor(item.getTextColor());
-        holder.mCardView.setCardBackgroundColor(item.getCardColor());
+        holder.mTextView.setTextColor(context.getResources().getColor(item.getTextColor()));
+        holder.mCardView.setCardBackgroundColor(context.getResources().getColor(item.getCardColor()));
     }
 
     @Override

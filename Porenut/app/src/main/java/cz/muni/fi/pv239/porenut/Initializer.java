@@ -51,7 +51,7 @@ public class Initializer {
         item.setCounter(0);
         item.setOrder(2);
         item.setAudioFileId(mContext.getResources().getIdentifier(item.getId(), "raw", mContext.getPackageName()));
-        item.setTextColor(R.color.colorCategoryTextDefault);
+        item.setTextColor(R.color.colorPrimary);
         item.setCardColor(R.color.colorCategoryCardDefault);
         managedItem = mRealm.copyToRealm(item);
 
@@ -60,7 +60,7 @@ public class Initializer {
         category.setTitle(mContext.getResources().getString(R.string.cat2));
         category.setOrder(1);
         category.setCounter(0);
-        category.setTextColor(mContext.getResources().getColor(R.color.colorCategoryTextDefault));
+        category.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
         category.setCardColor(mContext.getResources().getColor(R.color.colorCategoryCardDefault));
         category.setIcon(R.mipmap.ic_launcher);
         managedCategory = mRealm.copyToRealm(category);

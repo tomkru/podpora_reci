@@ -1,6 +1,7 @@
 package cz.muni.fi.pv239.porenut.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,8 @@ import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmList;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by pcyprian on 2.4.2017.
@@ -50,13 +53,18 @@ public class ItemActivity extends AppCompatActivity {
 
         Category category = mRealm.where(Category.class).equalTo("id",getIntent()
                                     .getLongExtra("categoryId",Long.MIN_VALUE)).findFirst();
-        mRealm.beginTransaction();
-        category.setCounter(category.getCounter()+1);
-        mRealm.commitTransaction();
         if (category == null) {
             Log.e("ItemActivity","Category wasn't found");
         }
         items = category.getItems();
+        final String PREFS_NAME = "MyPrefsFile";
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        RealmResults<Item> sortedItems;
+        if (settings.getBoolean("order", true)) {
+            sortedItems = items.sort("order", Sort.ASCENDING);
+        } else {
+            sortedItems = items.sort("counter", Sort.DESCENDING);
+        }
         Log.d("ItemActivity","Category with id "+category.getId()+" has "+items.size()+" items");
 
         getSupportActionBar().setTitle(category.getTitle());
@@ -68,7 +76,7 @@ public class ItemActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-        mAdapter = new ItemAdapter(context, items);
+        mAdapter = new ItemAdapter(context, sortedItems);
         mRecyclerView.setAdapter(mAdapter);
 
     }
