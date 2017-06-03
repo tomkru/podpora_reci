@@ -5,4 +5,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="cat1">"Greetings"</string>
+    <string name="cat2">"Food"</string>
+    <string name="first">"Set your six digit code please"</string>
+    <string name="ok">"Confirm"</string>
+    <string name="enter_admin_mode">"Do you want to enter admin mode?"</string>
+    <string name="yes">"Yes"</string>
+    <string name="no">"No"</string>
+    <string name="confirm_admin_code">"Enter your six digit code"</string>
+    <string name="wrong_code">"You have entered wrong code"</string>
 </resources>

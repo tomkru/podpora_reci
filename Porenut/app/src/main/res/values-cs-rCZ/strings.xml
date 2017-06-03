@@ -4,4 +4,9 @@
     <string name="cat2">"Jídlo"</string>
     <string name="first">"Tohle je první spuštění aplikace. Nastavte šestimístný číselný kód, který bude sloužit k editaci položek"</string>
     <string name="ok">"Potvrdit"</string>
+    <string name="enter_admin_mode">"Chcete vstoupit do administrátorského režimu?"</string>
+    <string name="yes">"Ano"</string>
+    <string name="no">"Ne"</string>
+    <string name="confirm_admin_code">"Vložte Váš šestimístný kód"</string>
+    <string name="wrong_code">"Vložili jste špatný kód"</string>
 </resources>

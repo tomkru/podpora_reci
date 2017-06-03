@@ -1,6 +1,7 @@
 package cz.muni.fi.pv239.porenut.activities;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -11,14 +12,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import cz.muni.fi.pv239.porenut.FirstRun;
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private CategoryAdapter mAdapter;
     private Realm mRealm;
     private RealmResults<Category> categories;
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         mRealm = Realm.getInstance(config);
 
-        final String PREFS_NAME = "MyPrefsFile";
+
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
 
         // uncomment for simulate first time run
@@ -228,9 +234,56 @@ public class MainActivity extends AppCompatActivity
                         "Administratorsky rezim",
                         Toast.LENGTH_SHORT
                 ).show();
-                Intent intent = new Intent(this, AdminModeActivity.class);
-                this.startActivity(intent);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(R.string.enter_admin_mode)
+                        .setNegativeButton(R.string.no, null)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(mContext, "Prihlaseni do admin modu", Toast.LENGTH_SHORT).show();
+                                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                                        View mView = getLayoutInflater().inflate(R.layout.confirm_admin_code, null);
+                                        final EditText mAdminCodeEditText = (EditText) mView.findViewById(R.id.confirm_admin_code_editText);
+                                        Button mEnterCode = (Button) mView.findViewById(R.id.confirm_admin_code_button);
+
+                                        mBuilder.setView(mView);
+                                        final AlertDialog dialogCode = mBuilder.create();
+                                        dialogCode.show();
+
+                                        mEnterCode.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                String enteredCode = mAdminCodeEditText.getText().toString();
+                                                if ( enteredCode == null || enteredCode.isEmpty() || !TextUtils.isDigitsOnly(enteredCode) ) {
+                                                    Toast.makeText(mContext, R.string.wrong_code, Toast.LENGTH_SHORT).show();
+                                                    dialogCode.dismiss();
+                                                    return;
+                                                }
+
+                                                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                                                if (Integer.parseInt(enteredCode) == settings.getInt("admin_code", -1)) {
+                                                    Toast.makeText(mContext, "Spravny kod", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(MainActivity.this, AdminModeActivity.class);
+                                                    MainActivity.this.startActivity(intent);
+                                                } else {
+                                                    Toast.makeText(mContext, R.string.wrong_code, Toast.LENGTH_SHORT).show();
+                                                    dialogCode.dismiss();
+                                                    return;
+                                                }
+
+
+                                            }
+                                        });
+
+
+
+                                    }
+                                }
+                        ).create().show();
                 break;
+                /*Intent intent = new Intent(this, AdminModeActivity.class);
+                this.startActivity(intent);
+                break;*/
             }
             default:
                 break;
