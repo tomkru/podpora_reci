@@ -11,7 +11,7 @@
     tools:context="cz.muni.fi.pv239.porenut.activities.TextToSpeechActivity">
 
     <Button
-        android:text="Button"
+        android:text="MLUV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
