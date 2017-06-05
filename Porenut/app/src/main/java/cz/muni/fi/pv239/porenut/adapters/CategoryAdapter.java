@@ -99,7 +99,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.mTextView.setTextColor(category.getTextColor());
         holder.mTextView.setText(category.getTitle());
         holder.mCardView.setCardBackgroundColor(category.getCardColor());
-        holder.mImageView.setImageResource(R.mipmap.ic_launcher);
+        holder.mImageView.setImageResource(category.getIcon());
 
     }
 

@@ -55,7 +55,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.need),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_launcher);
+                R.mipmap.ic_need);
         Category managedCategoryNeed = mRealm.copyToRealm(categoryNeed);
 
         Category categoryCustom = new Category(
@@ -63,7 +63,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.custom),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_launcher);
+                R.mipmap.ic_custom);
         Category managedCategoryCustom = mRealm.copyToRealm(categoryCustom);
 
         Category categoryHealth = new Category(
