@@ -1,6 +1,15 @@
 package cz.muni.fi.pv239.porenut.activities;
 
+import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.media.MediaRecorder;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
@@ -9,22 +18,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
+import cz.muni.fi.pv239.porenut.entities.Category;
+import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 public class AdminModeActivity extends AppCompatActivity {
 
-    private long itemId;
+    private String itemId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_mode);
+
+        final EditText text = (EditText) findViewById(R.id.item_text);
+        final EditText audioFileName = (EditText) findViewById(R.id.audio_file_name);
+        final Spinner cardColorSpinner = (Spinner) findViewById(R.id.card_color_spinner);
+        final Spinner textColorSpinner = (Spinner) findViewById(R.id.text_color_spinner);
+
 
         Button loadButton = (Button) findViewById(R.id.load_button);
         loadButton.setOnClickListener(new View.OnClickListener() {
@@ -37,8 +56,6 @@ public class AdminModeActivity extends AppCompatActivity {
             }
         });
 
-        itemId = getIntent().getLongExtra("id", -1);
-
         Button saveButton = (Button) findViewById(R.id.save_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,22 +67,46 @@ public class AdminModeActivity extends AppCompatActivity {
                         .build();
 
                 final Realm mRealm = Realm.getInstance(config);
+
+                Item item = mRealm.where(Item.class).findAll().where().equalTo("id", itemId).findFirst();
+                mRealm.beginTransaction();
+                if(item == null) {
+                    String id = text.getText().toString().toLowerCase().replace(' ', '_');
+                    Item item2 = mRealm.createObject(Item.class, id);
+                    item2.setText(text.getText().toString());
+                    item2.setAudioFileId(R.raw.kava);
+                    String cardColor = cardColorSpinner.getSelectedItem().toString();
+                    int cardColorId = getResources().getIdentifier(cardColor, "color", getPackageName());
+                    item2.setCardColor(cardColorId);
+                    String textColor = textColorSpinner.getSelectedItem().toString();
+                    int textColorId = getResources().getIdentifier(textColor, "color", getPackageName());
+                    item2.setTextColor(textColorId);
+                    //@TODO set audio attribute to item2
+                } else {
+                    item.setText(text.getText().toString());
+                    String cardColor = cardColorSpinner.getSelectedItem().toString();
+                    int cardColorId = getResources().getIdentifier(cardColor, "color", getPackageName());
+                    item.setCardColor(cardColorId);
+                    String textColor = textColorSpinner.getSelectedItem().toString();
+                    int textColorId = getResources().getIdentifier(textColor, "color", getPackageName());
+                    item.setTextColor(textColorId);
+                    //@TODO set audio attribute to item
+
+
+                }
+                mRealm.commitTransaction();
             }
         });
 
         if(getIntent().getBooleanExtra("toFill", false)) {
             List<String> colors = Arrays.asList((getResources().getStringArray(R.array.colorArray)));
-
-            EditText text = (EditText) findViewById(R.id.item_text);
+            itemId = getIntent().getStringExtra("id");
             text.setText(getIntent().getStringExtra("name"));
-            EditText audioFileName = (EditText) findViewById(R.id.audio_file_name);
             audioFileName.setText(getIntent().getStringExtra("audioFile"));
-            Spinner cardColorSpinner = (Spinner) findViewById(R.id.card_color_spinner);
             cardColorSpinner.setSelection(getIndexFromName(getApplicationContext()
                     .getResources()
                     .getResourceEntryName(getIntent()
                         .getIntExtra("cardColor", 0)), colors));
-            Spinner textColorSpinner = (Spinner) findViewById(R.id.text_color_spinner);
             textColorSpinner.setSelection(getIndexFromName(getApplicationContext()
                     .getResources()
                     .getResourceEntryName(getIntent()

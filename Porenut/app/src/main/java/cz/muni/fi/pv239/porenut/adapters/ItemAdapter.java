@@ -18,6 +18,7 @@ import java.util.List;
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.activities.AdminModeActivity;
 import cz.muni.fi.pv239.porenut.activities.MainActivity;
+import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.OrderedRealmCollection;
 import io.realm.Realm;
@@ -31,6 +32,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     public Context context;
     public List<Item> mDataSet;
     private boolean isAll = false;
+    private Category category;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView mCardView;
@@ -57,6 +59,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     public ItemAdapter(Context context, OrderedRealmCollection<Item> mDataSet, boolean isAll) {
         this.context = context;
         this.mDataSet = mDataSet;
+        this.isAll = isAll;
+        Log.d("ItemAdapt","Item list length "+mDataSet.size());
+    }
+
+    public ItemAdapter(Context context, OrderedRealmCollection<Item> mDataSet, Category category, boolean isAll) {
+        this.context = context;
+        this.mDataSet = mDataSet;
+        this.category = category;
         this.isAll = isAll;
         Log.d("ItemAdapt","Item list length "+mDataSet.size());
     }
