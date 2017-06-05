@@ -94,6 +94,19 @@
                 android:id="@+id/text_color_spinner"
                 android:entries="@array/colorArray"/>
 
+            <TextView
+                android:text="Kategorie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_color_spinner"
+                android:id="@+id/textView6" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/categorySpinner"
+                android:entries="@array/categoryArray"/>
+
             <Button
                 android:text="Save"
                 android:layout_width="match_parent"

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="categoryArray">
+        <item name="pozdravy">Pozdravy</item>
+        <item name="jidlo">Jídlo</item>
+    </array>
+
+</resources>

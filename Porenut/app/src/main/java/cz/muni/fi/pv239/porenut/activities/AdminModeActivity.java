@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
+import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -39,6 +40,7 @@ public class AdminModeActivity extends AppCompatActivity {
     private String [] permissions = {Manifest.permission.RECORD_AUDIO};
 
     EditText audioFileName;
+    Button saveButton;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -62,6 +64,10 @@ public class AdminModeActivity extends AppCompatActivity {
         final Spinner textColorSpinner = (Spinner) findViewById(R.id.text_color_spinner);
         audioFileName = (EditText) findViewById(R.id.audio_file_name);
         final Button recordButton = (Button) findViewById(R.id.record_button);
+        final Spinner categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        saveButton = (Button) findViewById(R.id.save_button);
+
+        saveButton.setEnabled(false);
 
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -130,7 +136,6 @@ public class AdminModeActivity extends AppCompatActivity {
             }
         });
 
-        Button saveButton = (Button) findViewById(R.id.save_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,38 +147,65 @@ public class AdminModeActivity extends AppCompatActivity {
 
                 final Realm mRealm = Realm.getInstance(config);
 
+                String id = text.getText().toString().toLowerCase().replace(' ', '_');;
+
                 Item item = mRealm.where(Item.class).findAll().where().equalTo("id", itemId).findFirst();
                 mRealm.beginTransaction();
                 if(item == null) {
-                    String id = text.getText().toString().toLowerCase().replace(' ', '_');
                     Item item2 = mRealm.createObject(Item.class, id);
                     item2.setText(text.getText().toString());
-                    item2.setAudioFileId(R.raw.kava);
-                    String cardColor = cardColorSpinner.getSelectedItem().toString();
+                    item2.setUserAudioFileId(audioFileName.getText().toString());
+
+                    String cardColor = getResources()
+                            .getStringArray(R.array.entryNameColor)[cardColorSpinner.getSelectedItemPosition()];
                     int cardColorId = getResources().getIdentifier(cardColor, "color", getPackageName());
                     item2.setCardColor(cardColorId);
-                    String textColor = textColorSpinner.getSelectedItem().toString();
+                    String textColor = getResources()
+                            .getStringArray(R.array.entryNameColor)[textColorSpinner.getSelectedItemPosition()];
                     int textColorId = getResources().getIdentifier(textColor, "color", getPackageName());
                     item2.setTextColor(textColorId);
+                    item2.setUser(true);
+                    mRealm.copyToRealm(item2);
                     //@TODO set audio attribute to item2
                 } else {
                     item.setText(text.getText().toString());
-                    String cardColor = cardColorSpinner.getSelectedItem().toString();
+                    String cardColor = getResources()
+                            .getStringArray(R.array.entryNameColor)[cardColorSpinner.getSelectedItemPosition()];
                     int cardColorId = getResources().getIdentifier(cardColor, "color", getPackageName());
                     item.setCardColor(cardColorId);
-                    String textColor = textColorSpinner.getSelectedItem().toString();
+                    String textColor = getResources()
+                            .getStringArray(R.array.entryNameColor)[textColorSpinner.getSelectedItemPosition()];
                     int textColorId = getResources().getIdentifier(textColor, "color", getPackageName());
                     item.setTextColor(textColorId);
-                    //@TODO set audio attribute to item
+                }
+                mRealm.commitTransaction();
 
+                mRealm.beginTransaction();
+                if(item == null) {
 
+                    Item temp = mRealm.where(Item.class)
+                            .findAll()
+                            .where()
+                            .equalTo("id", id)
+                            .findFirst();
+
+                    Category category = mRealm
+                            .where(Category.class)
+                            .findAll()
+                            .where()
+                            .equalTo("id", categorySpinner.getSelectedItemPosition()+1)
+                            .findFirst();
+                    category.getItems().add(temp);
                 }
                 mRealm.commitTransaction();
             }
         });
 
         if(getIntent().getBooleanExtra("toFill", false)) {
-            List<String> colors = Arrays.asList((getResources().getStringArray(R.array.colorArray)));
+            recordButton.setEnabled(false);
+            saveButton.setEnabled(true);
+
+            List<String> colors = Arrays.asList((getResources().getStringArray(R.array.entryNameColor)));
             itemId = getIntent().getStringExtra("id");
             text.setText(getIntent().getStringExtra("name"));
             audioFileName.setText(getIntent().getStringExtra("audioFile"));
@@ -185,6 +217,7 @@ public class AdminModeActivity extends AppCompatActivity {
                     .getResources()
                     .getResourceEntryName(getIntent()
                         .getIntExtra("textColor", 0)), colors));
+            int id = getResources().getIdentifier("colorArray", "array", getPackageName());
 
         }
     }
@@ -197,6 +230,7 @@ public class AdminModeActivity extends AppCompatActivity {
                 return i;
             }
         }
+
         return 0;
     }
 
@@ -227,6 +261,7 @@ public class AdminModeActivity extends AppCompatActivity {
     private void stopRecording() {
         mRecorder.stop();
         mRecorder.release();
+        saveButton.setEnabled(true);
         mRecorder = null;
     }
 
