@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -244,6 +245,10 @@ public class MainActivity extends AppCompatActivity
                                         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                                         View mView = getLayoutInflater().inflate(R.layout.confirm_admin_code, null);
                                         final EditText mAdminCodeEditText = (EditText) mView.findViewById(R.id.confirm_admin_code_editText);
+
+                                        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE))
+                                                .showSoftInput(mAdminCodeEditText, InputMethodManager.SHOW_FORCED);
+
                                         Button mEnterCode = (Button) mView.findViewById(R.id.confirm_admin_code_button);
 
                                         mBuilder.setView(mView);

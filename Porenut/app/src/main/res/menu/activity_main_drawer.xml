@@ -11,16 +11,20 @@
             android:icon="@drawable/ic_menu_recently"
             android:title="Poslední použité"/>
     </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_counter"
-            android:checkable="true"
-            android:title="Serad podle poctu kliku"/>
-        <item
-            android:id="@+id/nav_order"
-            android:checkable="true"
-            android:title="Serad podle poctu oblibenosit"/>
-    </group>
+    <item android:title="@string/order">
+        <menu>
+        <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_counter"
+                android:checkable="true"
+                android:title="Serad podle poctu kliku"/>
+            <item
+                android:id="@+id/nav_order"
+                android:checkable="true"
+                android:title="Serad podle poctu oblibenosit"/>
+        </group>
+        </menu>
+    </item>
 
 
     <item android:title="Pokročilé">

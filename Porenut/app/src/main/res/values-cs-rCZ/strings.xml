@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="cat1">"Pozdravy"</string>
-    <string name="cat2">"Jídlo"</string>
     <string name="first">"Tohle je první spuštění aplikace. Nastavte šestimístný číselný kód, který bude sloužit k editaci položek"</string>
     <string name="ok">"Potvrdit"</string>
     <string name="enter_admin_mode">"Chcete vstoupit do administrátorského režimu?"</string>
@@ -9,4 +7,94 @@
     <string name="no">"Ne"</string>
     <string name="confirm_admin_code">"Vložte Váš šestimístný kód"</string>
     <string name="wrong_code">"Vložili jste špatný kód"</string>
+    <string name="order">"Pořadí řazení"</string>
+
+
+    <!-- categories & items -->
+    <string name="food">"Jídlo"</string>
+    <string name="drink">"Pití"</string>
+    <string name="need">"Potřeby"</string>
+    <string name="health">"Zdraví"</string>
+    <string name="greetings">"Pozdravy"</string>
+    <string name="custom">"Vlastní"</string>
+
+
+    <!-- food -->
+    <string name="chicken">"Dal bych si kuře"</string>
+    <string name="cake">"Prosím kousek dortu"</string>
+    <string name="sauce">"Mám chuť na svíčkvou"</string>
+    <string name="schn">"Mám chuť na řízek"</string>
+    <string name="roast">"Mám chuť na pečené maso"</string>
+    <string name="pasta">"Mám chuť na těstoviny"</string>
+    <string name="tomato">"Mám chuť na rajskou omáčku"</string>
+    <string name="pork">"Mám chuť na vepřo knedlo zelo"</string>
+    <string name="hal">"Mám chuť na halušky"</string>
+    <string name="dump">"Mám chuť na plněné knedlíky"</string>
+    <string name="soup">"Mám chuť na polévku"</string>
+    <string name="no_soup">"Nechci polévku, děkuji"</string>
+    <string name="non_hungry">"Děkuji, teď nemám hlad"</string>
+    <string name="hungry">"Mám hlad"</string>
+    <string name="food_i">"Kdy bude jídlo?"</string>
+    <string name="salt">"Sůl, prosím"</string>
+    <string name="delic">"Bylo to výborné"</string>
+    <string name="add_on">"Mohl bych si přidat, prosím"</string>
+
+    <!-- greetings -->
+    <string name="hi">"Ahoj"</string>
+    <string name="hello">"Nazdar"</string>
+    <string name="good">"Dobrý den"</string>
+    <string name="how">"Jak se máte?"</string>
+    <string name="how_u">"Jak se máš?"</string>
+    <string name="i_ok">"Mám se dobře"</string>
+    <string name="bye">"Na shledanou"</string>
+    <string name="good_time">"Mějte se pěkně"</string>
+    <string name="good_time_u">"Měj se pěkně"</string>
+    <string name="next">"Těším se, až se znovu uvidíme"</string>
+    <string name="next_time">"Kdy se znovu uvidíme?"</string>
+
+    <!-- drink -->
+    <string name="thirsty">"Mám žízeň"</string>
+    <string name="non_thirsty">"Děkuji, nemám žízeň"</string>
+    <string name="beer">"Dal bych si pivo, prosím"</string>
+    <string name="tea">"Dal bych si čaj, prosím"</string>
+    <string name="milk">"Dal bych si mléko, prosím"</string>
+    <string name="coffee">"Dal bych si kávu, prosím"</string>
+    <string name="water">"Dal bych si vodu, prosím"</string>
+    <string name="sirup">"Dal bych si šťávu, prosím"</string>
+
+    <!-- need -->
+    <string name="toilet">"Potřebuji na záchod"</string>
+    <string name="tired">"Jsem unavený"</string>
+    <string name="sleep">"Chce se mi spát"</string>
+    <string name="shower">"Jdu se umýt"</string>
+    <string name="home">"Kdy půjdeme domů?"</string>
+    <string name="cold">"Je mi zima"</string>
+    <string name="hot">"Je mi horko"</string>
+    <string name="walk">"Chci se projít"</string>
+    <string name="non_walk">"Nechci se projít"</string>
+    <string name="tv">"Jdu se dívat na TV"</string>
+    <string name="news">"Kde jsou noviny?"</string>
+
+    <!-- health -->
+    <string name="sick">"Je mi špatně"</string>
+    <string name="weak">"Cítím se slabě"</string>
+    <string name="head">"Bolí mě hlava"</string>
+    <string name="hand">"Bolí mě ruka"</string>
+    <string name="leg">"Bolí mě noha"</string>
+    <string name="belly">"Bolí mě břicho"</string>
+    <string name="back">"Bolí mě záda"</string>
+    <string name="fine">"Je mi dobře"</string>
+    <string name="no_hurt">"Nic mě nebolí"</string>
+    <string name="doctor">"Kdy pojedeme k doktorovi?"</string>
+
+    <!-- custom -->
+    <string name="fran">"Jmenuji se František"</string>
+    <string name="vel">"Kdy přijedou Veličani?"</string>
+    <string name="fera">"Kde je Fera?"</string>
+    <string name="pavel">"Kde je Pavel?"</string>
+    <string name="hanka">"Kde je Hanka?"</string>
+    <string name="radejov">"Kdy pojedeme do Radějova?"</string>
+    <string name="rez">"Dones, prosím, režnou"</string>
+
+
 </resources>

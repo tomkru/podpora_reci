@@ -6,8 +6,6 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="cat1">"Greetings"</string>
-    <string name="cat2">"Food"</string>
     <string name="first">"Set your six digit code please"</string>
     <string name="ok">"Confirm"</string>
     <string name="enter_admin_mode">"Do you want to enter admin mode?"</string>
@@ -15,4 +13,91 @@
     <string name="no">"No"</string>
     <string name="confirm_admin_code">"Enter your six digit code"</string>
     <string name="wrong_code">"You have entered wrong code"</string>
+    <string name="order">"Order"</string>
+
+    <!-- categories & items -->
+    <string name="food">"Food"</string>
+    <string name="drink">"Drink"</string>
+    <string name="need">"Need"</string>
+    <string name="health">"Health"</string>
+    <string name="greetings">"Greetings"</string>
+    <string name="custom">"Custom"</string>
+
+
+    <!-- food -->
+    <string name="chicken">"Chicken"</string>
+    <string name="cake">"Cake"</string>
+    <string name="sauce">"Sauce"</string>
+    <string name="schn">"Schnitzel"</string>
+    <string name="roast">"Roast"</string>
+    <string name="pasta">"Pasta"</string>
+    <string name="tomato">"Tomato sauce"</string>
+    <string name="pork">"Pork meat"</string>
+    <string name="hal">"Chips"</string>
+    <string name="dump">"Dumplings"</string>
+    <string name="soup">"Soup"</string>
+    <string name="no_soup">"No soup"</string>
+    <string name="non_hungry">"Non-hungry"</string>
+    <string name="hungry">"Hungry"</string>
+    <string name="food_i">"When will be food?"</string>
+    <string name="salt">"Salt"</string>
+    <string name="delic">"Delicious"</string>
+    <string name="add_on">"More"</string>
+
+    <!-- greetings -->
+    <string name="hi">"Hi"</string>
+    <string name="hello">"Hello"</string>
+    <string name="good">"Good morning"</string>
+    <string name="how">"How are you?"</string>
+    <string name="how_u">"How are you doing?"</string>
+    <string name="i_ok">"I'm fine"</string>
+    <string name="bye">"Bye"</string>
+    <string name="good_time">"Have a good time!"</string>
+    <string name="good_time_u">"Have a great time!"</string>
+    <string name="next">"I'm looking forward to see you again"</string>
+    <string name="next_time">"Next time"</string>
+
+    <!-- drink -->
+    <string name="thirsty">"Thirsty"</string>
+    <string name="non_thirsty">"Non-thirsty"</string>
+    <string name="beer">"Beer"</string>
+    <string name="tea">"Tea"</string>
+    <string name="milk">"Milk"</string>
+    <string name="coffee">"Coffee"</string>
+    <string name="water">"Water"</string>
+    <string name="sirup">"Sirup"</string>
+
+    <!-- need -->
+    <string name="toilet">"Toilet"</string>
+    <string name="tired">"Tired"</string>
+    <string name="sleep">"I want go to bed"</string>
+    <string name="shower">"I go to shower"</string>
+    <string name="home">"When will we go home?"</string>
+    <string name="cold">"It's cold"</string>
+    <string name="hot">"It's hot"</string>
+    <string name="walk">"Walk"</string>
+    <string name="non_walk">"No walk"</string>
+    <string name="tv">TV"</string>
+    <string name="news">"News"</string>
+
+    <!-- health -->
+    <string name="sick">"Sick"</string>
+    <string name="weak">"Weak"</string>
+    <string name="head">"Head"</string>
+    <string name="hand">"Hand"</string>
+    <string name="leg">"Leg"</string>
+    <string name="belly">"Belly"</string>
+    <string name="back">"Back"</string>
+    <string name="fine">"Fine"</string>
+    <string name="no_hurt">"No hurt"</string>
+    <string name="doctor">"Doctor"</string>
+
+    <!-- custom -->
+    <string name="fran">"My name is František"</string>
+    <string name="vel">"Veličani?"</string>
+    <string name="fera">"Where is Fera?"</string>
+    <string name="pavel">"Where is Pavel?"</string>
+    <string name="hanka">"Where is Hanka?"</string>
+    <string name="radejov">"When will we go to Radejov?"</string>
+    <string name="rez">"Reznou"</string>
 </resources>
