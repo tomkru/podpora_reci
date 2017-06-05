@@ -17,11 +17,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -235,7 +237,8 @@ public class MainActivity extends AppCompatActivity
                         "Administratorsky rezim",
                         Toast.LENGTH_SHORT
                 ).show();
-                new AlertDialog.Builder(MainActivity.this)
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                AlertDialog alertDialog = alertDialogBuilder
                         .setTitle(R.string.enter_admin_mode)
                         .setNegativeButton(R.string.no, null)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -245,14 +248,15 @@ public class MainActivity extends AppCompatActivity
                                         AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                                         View mView = getLayoutInflater().inflate(R.layout.confirm_admin_code, null);
                                         final EditText mAdminCodeEditText = (EditText) mView.findViewById(R.id.confirm_admin_code_editText);
-
-                                        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE))
-                                                .showSoftInput(mAdminCodeEditText, InputMethodManager.SHOW_FORCED);
+                                        mAdminCodeEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                                        //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                        //imm.showSoftInput(mAdminCodeEditText, InputMethodManager.SHOW_IMPLICIT);
 
                                         Button mEnterCode = (Button) mView.findViewById(R.id.confirm_admin_code_button);
 
                                         mBuilder.setView(mView);
                                         final AlertDialog dialogCode = mBuilder.create();
+                                        dialogCode.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
                                         dialogCode.show();
 
                                         mEnterCode.setOnClickListener(new View.OnClickListener() {
@@ -284,7 +288,8 @@ public class MainActivity extends AppCompatActivity
 
                                     }
                                 }
-                        ).create().show();
+                        ).create();
+                alertDialogBuilder.show();
                 break;
                 /*Intent intent = new Intent(this, AdminModeActivity.class);
                 this.startActivity(intent);
