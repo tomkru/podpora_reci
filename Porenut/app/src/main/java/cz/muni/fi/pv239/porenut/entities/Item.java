@@ -21,8 +21,13 @@ public class Item extends RealmObject {
     private int cardColor;
     private int textColor;
     private int audioFileId;
+    private String userAudioFileId;
+    private boolean isUser;
 
-    public Item(){}
+
+    public Item(){
+        isUser = false;
+    }
 
     public Item(String id, int order, int cardColor, int textColor) {
         this.id = id;
@@ -97,5 +102,21 @@ public class Item extends RealmObject {
 
     public void setAudioFileId(int audioFileId) {
         this.audioFileId = audioFileId;
+    }
+
+    public boolean isUser() {
+        return isUser;
+    }
+
+    public void setUser(boolean user) {
+        isUser = user;
+    }
+
+    public String getUserAudioFileId() {
+        return userAudioFileId;
+    }
+
+    public void setUserAudioFileId(String userAudioFileId) {
+        this.userAudioFileId = userAudioFileId;
     }
 }

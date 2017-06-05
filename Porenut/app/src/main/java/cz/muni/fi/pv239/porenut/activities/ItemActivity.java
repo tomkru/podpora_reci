@@ -88,7 +88,7 @@ public class ItemActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-        mAdapter = new ItemAdapter(context, sortedItems, category, isAll);
+        mAdapter = new ItemAdapter(context, sortedItems, isAll);
         mRecyclerView.setAdapter(mAdapter);
 
     }

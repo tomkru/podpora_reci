@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -107,7 +108,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
                             Toast.LENGTH_SHORT
                     ).show();
 
-                    MediaPlayer mp = MediaPlayer.create(context, clickedItem.getAudioFileId());
+                    MediaPlayer mp;
+                    if(clickedItem.isUser()) {
+                        mp = MediaPlayer.create(context,
+                                Uri.parse(clickedItem.getUserAudioFileId()));
+                    } else {
+                        mp = MediaPlayer.create(context, clickedItem.getAudioFileId());
+                    }
                     mp.start();
 
                     context.startActivity(new Intent(context, MainActivity.class));

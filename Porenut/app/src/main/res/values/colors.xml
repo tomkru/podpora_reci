@@ -9,11 +9,20 @@
     <color name="colorTextDefault">#000000</color>
 
     <array name="colorArray">
-        <item name="Fialova">colorPrimary</item>
-        <item name="Modra">colorPrimaryDark</item>
-        <item name="Ruzova">colorAccent</item>
-        <item name="Svetlo Modra">colorCategoryCardDefault</item>
-        <item name="Seda">colorItemCardDefault</item>
-        <item name="Cierna">colorCategoryTextDefault</item>
+        <item name="colorPrimary">Fialová</item>
+        <item name="colorPrimaryDark">Modrá</item>
+        <item name="colorAccent">Růžová</item>
+        <item name="colorCategoryCardDefault">Světle Modrá</item>
+        <item name="colorItemCardDefault">Šedá</item>
+        <item name="colorCategoryTextDefault">Černá</item>
+    </array>
+
+    <array name="entryNameColor">
+        <item name="colorPrimary">colorPrimary</item>
+        <item name="colorPrimaryDark">colorPrimaryDark</item>
+        <item name="colorAccent">colorAccent</item>
+        <item name="colorCategoryCardDefault">colorCategoryCardDefault</item>
+        <item name="colorItemCardDefault">colorItemCardDefault</item>
+        <item name="colorCategoryTextDefault">colorCategoryTextDefault</item>
     </array>
 </resources>

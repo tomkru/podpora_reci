@@ -138,8 +138,8 @@ public class MainActivity extends AppCompatActivity
 
         //TODO delete
         Category category = mRealm.where(Category.class).equalTo("id",1).findFirst();
-        Log.d("MainActivity", "Category with id 1 has title " + category.getTitle() +" and "
-                +category.getItems().size() + " items");
+        //Log.d("MainActivity", "Category with id 1 has title " + category.getTitle() +" and "
+        //        +category.getItems().size() + " items");
 
         mAdapter = new CategoryAdapter(mContext,categories);
         mRecyclerView.setAdapter(mAdapter);
