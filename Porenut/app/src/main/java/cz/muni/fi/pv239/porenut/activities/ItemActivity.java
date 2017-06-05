@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import java.util.List;
+
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.adapters.ItemAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
@@ -66,14 +68,11 @@ public class ItemActivity extends AppCompatActivity {
         final String PREFS_NAME = "MyPrefsFile";
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         RealmResults<Item> sortedItems;
+        RealmList<Item> top10 = new RealmList<>();
 
         if( getIntent().getBooleanExtra("isFavourite", false)) {
-            RealmResults<Item> itemsTemp = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
-            RealmList<Item> top10= new RealmList<>();
-            for (int i = 0; i < 10; i++){
-                top10.add(itemsTemp.get(i));
-            }
-            sortedItems = top10.sort("counter", Sort.DESCENDING);
+            List<Item> itemsTemp = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING).subList(0,10);
+            top10.addAll(itemsTemp);
         }
 
 
@@ -97,8 +96,12 @@ public class ItemActivity extends AppCompatActivity {
         mLayoutManager = new GridLayoutManager(context, getResources().getInteger(R.integer.column));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        if(sortedItems.isEmpty()) {
+            mAdapter = new ItemAdapter(context, top10, isAll);
+        } else {
+            mAdapter = new ItemAdapter(context, sortedItems, isAll);
+        }
 
-        mAdapter = new ItemAdapter(context, sortedItems, isAll);
         mRecyclerView.setAdapter(mAdapter);
 
     }

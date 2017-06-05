@@ -205,6 +205,9 @@ public class AdminModeActivity extends AppCompatActivity {
                     category.getItems().add(temp);
                 }
                 mRealm.commitTransaction();
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 

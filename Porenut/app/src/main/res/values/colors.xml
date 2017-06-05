@@ -23,8 +23,8 @@
         <item name="colorPrimaryDark">colorPrimaryDark</item>
         <item name="colorAccent">colorAccent</item>
         <item name="colorCategoryCardDefault">colorCategoryCardDefault</item>
-        <item name="colorItemCardDefault">colorItemCardDefault</item>
-        <item name="colorCategoryTextDefault">colorCategoryTextDefault</item>
+        <item name="colorItemCardPrimaryDefault">colorItemCardPrimaryDefault</item>
+        <item name="colorItemCardSecondaryDefault">colorItemCardSecondaryDefault</item>
         <item name="colorTextDefault">colorTextDefault</item>
     </array>
 </resources>
