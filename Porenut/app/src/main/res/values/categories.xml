@@ -4,6 +4,10 @@
     <array name="categoryArray">
         <item name="pozdravy">Pozdravy</item>
         <item name="jidlo">Jídlo</item>
+        <item name="piti">Pití</item>
+        <item name="potreby">Potřeby</item>
+        <item name="vlastni">Vlastní</item>
+        <item name="zdravi">Zdraví</item>
     </array>
 
 </resources>
