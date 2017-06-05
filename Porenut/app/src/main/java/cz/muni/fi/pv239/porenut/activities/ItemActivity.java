@@ -67,6 +67,16 @@ public class ItemActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         RealmResults<Item> sortedItems;
 
+        if( getIntent().getBooleanExtra("isFavourite", false)) {
+            RealmResults<Item> itemsTemp = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
+            RealmList<Item> top10= new RealmList<>();
+            for (int i = 0; i < 10; i++){
+                top10.add(itemsTemp.get(i));
+            }
+            sortedItems = top10.sort("counter", Sort.DESCENDING);
+        }
+
+
         if(getIntent().getLongExtra("categoryId", -1) == -1) {
             getSupportActionBar().setTitle("All");
             sortedItems = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
