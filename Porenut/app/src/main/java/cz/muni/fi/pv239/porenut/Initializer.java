@@ -1,13 +1,10 @@
 package cz.muni.fi.pv239.porenut;
 
 import android.content.Context;
-import android.util.Log;
-
 import cz.muni.fi.pv239.porenut.entities.Category;
 import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.Realm;
 
-import static android.R.attr.id;
 
 
 /**
