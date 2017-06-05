@@ -31,7 +31,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.greetings),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_launcher);
+                R.mipmap.ic_greetings);
         Category managedCategoryGreetings = mRealm.copyToRealm(categoryGreetings);
 
         Category categoryFood = new Category(
@@ -39,7 +39,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.food),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_launcher);
+                R.mipmap.ic_food);
         Category managedCategoryFood = mRealm.copyToRealm(categoryFood);
 
         Category categoryDrink = new Category(
@@ -47,7 +47,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.drink),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_launcher);
+                R.mipmap.ic_drinks);
         Category managedCategoryDrink = mRealm.copyToRealm(categoryDrink);
 
         Category categoryNeed = new Category(
@@ -71,8 +71,16 @@ public class Initializer {
                 mContext.getResources().getString(R.string.health),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_launcher);
+                R.mipmap.ic_health);
         Category managedCategoryHealth = mRealm.copyToRealm(categoryHealth);
+
+        Category categoryFavourite = new Category(
+                7,
+                mContext.getResources().getString(R.string.favourite),
+                mContext.getResources().getColor(R.color.colorCategoryCardDefault),
+                mContext.getResources().getColor(R.color.colorTextDefault),
+                R.mipmap.ic_favourite);
+        mRealm.copyToRealm(categoryFavourite);
         // end of init categories
 
 
