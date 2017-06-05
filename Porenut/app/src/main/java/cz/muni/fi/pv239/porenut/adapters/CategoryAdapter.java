@@ -80,6 +80,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 ).show();
                 Intent intent = new Intent(mContext, ItemActivity.class);
                 intent.putExtra("categoryId", clickedCategory.getId());
+                if (clickedCategory.getId() == 7) {
+                    intent.putExtra("isFavourite", true);
+                }
 
                 mContext.startActivity(intent);
             }

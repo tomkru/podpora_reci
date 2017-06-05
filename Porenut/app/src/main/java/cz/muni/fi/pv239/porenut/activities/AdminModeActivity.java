@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -165,8 +166,14 @@ public class AdminModeActivity extends AppCompatActivity {
                     int textColorId = getResources().getIdentifier(textColor, "color", getPackageName());
                     item2.setTextColor(textColorId);
                     item2.setUser(true);
+
+                    if (mRealm.where(Item.class).findAll().where().equalTo("id", id).findFirst() != null){
+                        Toast.makeText(getApplicationContext(),
+                                "Polozka s tymto id uz existuje",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    
                     mRealm.copyToRealm(item2);
-                    //@TODO set audio attribute to item2
                 } else {
                     item.setText(text.getText().toString());
                     String cardColor = getResources()
