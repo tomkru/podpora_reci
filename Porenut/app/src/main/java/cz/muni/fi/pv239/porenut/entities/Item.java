@@ -1,5 +1,9 @@
 package cz.muni.fi.pv239.porenut.entities;
 
+import android.content.Context;
+import android.util.Log;
+
+import cz.muni.fi.pv239.porenut.R;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -19,6 +23,14 @@ public class Item extends RealmObject {
     private int audioFileId;
 
     public Item(){}
+
+    public Item(String id, int order, int cardColor, int textColor) {
+        this.id = id;
+        this.order = order;
+        this.cardColor = cardColor;
+        this.textColor = textColor;
+        this.counter = 0;
+    }
 
     public String getId() {
         return id;
@@ -70,6 +82,17 @@ public class Item extends RealmObject {
 
     public int getAudioFileId() {
         return audioFileId;
+    }
+
+    public void setTextAudioByItemId(Context mContext) {
+
+            this.text = mContext.getResources().getString(
+                    mContext.getResources().getIdentifier(this.getId(), "string", mContext.getPackageName()));
+            Log.d("Item","Text " + this.text + " for item with id "+this.id+"was set");
+
+            this.audioFileId = mContext.getResources().getIdentifier(this.getId(), "raw", mContext.getPackageName());
+            Log.d("Item","Audio file with id " + this.audioFileId +" for item with id "+this.id+"was set");
+
     }
 
     public void setAudioFileId(int audioFileId) {

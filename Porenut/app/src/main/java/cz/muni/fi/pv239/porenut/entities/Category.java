@@ -24,8 +24,7 @@ public class Category extends RealmObject {
 
     public Category() {}
 
-    /*
-    public Category(long id, String title, int cardColor, int textColor, int icon, RealmList items) {
+    public Category(long id, String title, int cardColor, int textColor, int icon) {
         this.id = id;
         this.title = title;
         this.order = id;
@@ -33,8 +32,7 @@ public class Category extends RealmObject {
         this.cardColor = cardColor;
         this.textColor = textColor;
         this.icon = icon;
-        this.items = items;
-    }*/
+    }
 
     public long getId() {
         return id;

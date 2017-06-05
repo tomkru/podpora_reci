@@ -4,8 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorCategoryCardDefault">#c9f2f7</color>
-    <color name="colorItemCardDefault">#c9e2f7</color>
-    <color name="colorCategoryTextDefault">#000000</color>
+    <color name="colorItemCardPrimaryDefault">#c9e2f7</color>
+    <color name="colorItemCardSecondaryDefault">#ffffff</color>
+    <color name="colorTextDefault">#000000</color>
 
     <array name="colorArray">
         <item name="Fialova">colorPrimary</item>
