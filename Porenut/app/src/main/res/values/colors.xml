@@ -13,8 +13,9 @@
         <item name="colorPrimaryDark">Modrá</item>
         <item name="colorAccent">Růžová</item>
         <item name="colorCategoryCardDefault">Světle Modrá</item>
-        <item name="colorItemCardDefault">Šedá</item>
-        <item name="colorCategoryTextDefault">Černá</item>
+        <item name="colorItemCardPrimaryDefault">Světle Světle Modrá</item>
+        <item name="colorItemCardSecondaryDefault">Bílá</item>
+        <item name="colorTextDefault">Černá</item>
     </array>
 
     <array name="entryNameColor">
@@ -24,5 +25,6 @@
         <item name="colorCategoryCardDefault">colorCategoryCardDefault</item>
         <item name="colorItemCardDefault">colorItemCardDefault</item>
         <item name="colorCategoryTextDefault">colorCategoryTextDefault</item>
+        <item name="colorTextDefault">colorTextDefault</item>
     </array>
 </resources>
