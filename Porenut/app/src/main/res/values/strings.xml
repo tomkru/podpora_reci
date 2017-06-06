@@ -1,5 +1,10 @@
 <resources>
+    <string name="choose">"Choose category"</string>
+    <string name="playing">"Playing ..."</string>
     <string name="app_name">Porenut</string>
+    <string name="speak">"SPEAK"</string>
+    <string name="manually">"Manually input"</string>
+    <string name="last">"Last used"</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,6 +19,10 @@
     <string name="confirm_admin_code">"Enter your six digit code"</string>
     <string name="wrong_code">"You have entered wrong code"</string>
     <string name="order">"Order"</string>
+    <string name="order_default">"Default order"</string>
+    <string name="order_counter">"Order by counter"</string>
+    <string name="advanced">"Advanced"</string>
+    <string name="admin">"Admin mode"</string>
 
     <!-- categories & items -->
     <string name="food">"Food"</string>

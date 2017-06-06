@@ -5,34 +5,35 @@
         <item
             android:id="@+id/nav_keyboard"
             android:icon="@drawable/ic_menu_keyboard"
-            android:title="Napiš frázi ručně" />
+            android:title="@string/manually" />
         <item
             android:id="@+id/nav_recently_used"
             android:icon="@drawable/ic_menu_recently"
-            android:title="Poslední použité"/>
+            android:title="@string/last"/>
     </group>
     <item android:title="@string/order">
         <menu>
         <group android:checkableBehavior="single">
             <item
-                android:id="@+id/nav_counter"
-                android:checkable="true"
-                android:title="Serad podle poctu kliku"/>
-            <item
                 android:id="@+id/nav_order"
                 android:checkable="true"
-                android:title="Serad podle poctu oblibenosit"/>
+                android:title="@string/order_default"/>
+            <item
+                android:id="@+id/nav_counter"
+                android:checkable="true"
+                android:title="@string/order_counter"/>
+
         </group>
         </menu>
     </item>
 
 
-    <item android:title="Pokročilé">
+    <item android:title="@string/advanced">
         <menu>
             <item
                 android:id="@+id/nav_auth"
                 android:icon="@drawable/ic_menu_auth"
-                android:title="Administrátorský mód" />
+                android:title="@string/admin" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

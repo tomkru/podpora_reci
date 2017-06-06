@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="choose">"Vyber kategorii"</string>
+    <string name="playing">"Přehrávám ..."</string>
     <string name="first">"Tohle je první spuštění aplikace. Nastavte šestimístný číselný kód, který bude sloužit k editaci položek"</string>
     <string name="ok">"Potvrdit"</string>
     <string name="enter_admin_mode">"Chcete vstoupit do administrátorského režimu?"</string>
@@ -8,6 +10,13 @@
     <string name="confirm_admin_code">"Vložte Váš šestimístný kód"</string>
     <string name="wrong_code">"Vložili jste špatný kód"</string>
     <string name="order">"Pořadí řazení"</string>
+    <string name="speak">"MLUV"</string>
+    <string name="manually">"Napiš frázi ručně"</string>
+    <string name="last">"Poslední použité"</string>
+    <string name="order_default">"Výchozí řazení"</string>
+    <string name="order_counter">"Seřaď podle oblíbenosti"</string>
+    <string name="advanced">"Pokročilé"</string>
+    <string name="admin">"Administrátorský mód"</string>
 
 
     <!-- categories & items -->

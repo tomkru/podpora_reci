@@ -71,13 +71,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 mRealm.beginTransaction();
                 clickedCategory.setCounter(clickedCategory.getCounter()+1);
                 mRealm.commitTransaction();
-                Toast.makeText(
-                        mContext,
-                        "Clicked : " + clickedCategory.getId() +
-                        ", counter: " + clickedCategory.getCounter() +
-                        ", order: " + clickedCategory.getOrder(),
-                        Toast.LENGTH_SHORT
-                ).show();
                 Intent intent = new Intent(mContext, ItemActivity.class);
                 intent.putExtra("categoryId", clickedCategory.getId());
                 if (clickedCategory.getId() == 7) {

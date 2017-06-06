@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -24,7 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -121,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         MenuItem counter = menu.findItem(R.id.nav_counter);
 
 
-        getSupportActionBar().setTitle("Vyber kategorii");
+        getSupportActionBar().setTitle(R.string.choose);
 
 
         categories = mRealm.where(Category.class).findAll();
@@ -187,29 +185,17 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_keyboard: {
-                Toast.makeText(
-                        mContext,
-                        "Activita pro psani na klavesnici",
-                        Toast.LENGTH_SHORT
-                ).show();
+                Log.d("MainActivity","Click on manual input");
                 Intent intent = new Intent(this, TextToSpeechActivity.class);
                 this.startActivity(intent);
                 break;
             }
             case R.id.nav_recently_used: {
-                Toast.makeText(
-                        mContext,
-                        "Activita pro posledni pouzite",
-                        Toast.LENGTH_SHORT
-                ).show();
+                Log.d("MainActivity","Click on last used");
                 break;
             }
             case R.id.nav_counter: {
-                Toast.makeText(
-                        mContext,
-                        "Activita pro serazeni podle poctu kliku",
-                        Toast.LENGTH_SHORT
-                ).show();
+                Log.d("MainActivity","Sort by counter");
                 final String PREFS_NAME = "MyPrefsFile";
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 settings.edit().putBoolean("order", false).commit();
@@ -218,11 +204,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_order: {
-                Toast.makeText(
-                        mContext,
-                        "Activita pro serazeni podle oblibenosti",
-                        Toast.LENGTH_SHORT
-                ).show();
+                Log.d("MainActivity","Sort by order");
 
                 final String PREFS_NAME = "MyPrefsFile";
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -232,13 +214,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_auth: {
-                Toast.makeText(
-                        mContext,
-                        "Administratorsky rezim",
-                        Toast.LENGTH_SHORT
-                ).show();
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                AlertDialog alertDialog = alertDialogBuilder
+                alertDialogBuilder
                         .setTitle(R.string.enter_admin_mode)
                         .setNegativeButton(R.string.no, null)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -249,8 +226,6 @@ public class MainActivity extends AppCompatActivity
                                         View mView = getLayoutInflater().inflate(R.layout.confirm_admin_code, null);
                                         final EditText mAdminCodeEditText = (EditText) mView.findViewById(R.id.confirm_admin_code_editText);
                                         mAdminCodeEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                                        //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                        //imm.showSoftInput(mAdminCodeEditText, InputMethodManager.SHOW_IMPLICIT);
 
                                         Button mEnterCode = (Button) mView.findViewById(R.id.confirm_admin_code_button);
 
@@ -279,21 +254,13 @@ public class MainActivity extends AppCompatActivity
                                                     dialogCode.dismiss();
                                                     return;
                                                 }
-
-
                                             }
                                         });
-
-
-
                                     }
                                 }
                         ).create();
                 alertDialogBuilder.show();
                 break;
-                /*Intent intent = new Intent(this, AdminModeActivity.class);
-                this.startActivity(intent);
-                break;*/
             }
             default:
                 break;
