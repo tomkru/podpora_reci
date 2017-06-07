@@ -8,8 +8,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import java.util.List;
-
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.adapters.ItemAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
@@ -32,16 +30,12 @@ public class ItemActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private Realm mRealm;
     private RealmList<Item> items;
-    private boolean isAll = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        // TODO je dobre tato inicializace nebo ta nize???
-        //Realm.init(this);
-        //mRealm = Realm.getDefaultInstance();
 
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
@@ -54,57 +48,62 @@ public class ItemActivity extends AppCompatActivity {
             Log.e("ItemActivity","Realm is null");
         }
 
-        Category category = null;
-        if(getIntent().getLongExtra("categoryId", -1) != -1) {
-            category = mRealm.where(Category.class).equalTo("id",getIntent()
-                    .getLongExtra("categoryId",Long.MIN_VALUE)).findFirst();
-            if (category == null) {
-                Log.e("ItemActivity","Category wasn't found");
+        RealmResults<Item> sortedItems = null;
+
+        switch (getIntent().getIntExtra("itemMode",0)) {
+            // normal mode (category clicked)
+            case 0 : {
+                final String PREFS_NAME = "MyPrefsFile";
+                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                Category category = null;
+                if(getIntent().getLongExtra("categoryId", -1) != -1) {
+                    category = mRealm.where(Category.class).equalTo("id", getIntent()
+                            .getLongExtra("categoryId", Long.MIN_VALUE)).findFirst();
+                }
+                if (category == null) {
+                    Log.e("ItemActivity","Category wasn't found");
+                }
+                items = category.getItems();
+                Log.d("ItemActivity","Category with id "+category.getId()+" has "+items.size()+" items");
+                getSupportActionBar().setTitle(category.getTitle());
+
+                if (settings.getBoolean("order", true)) {
+                    sortedItems = items.sort("order", Sort.ASCENDING);
+                } else {
+                    sortedItems = items.sort("counter", Sort.DESCENDING);
+                }
+                break;
             }
-            items = category.getItems();
-        }
-
-
-        final String PREFS_NAME = "MyPrefsFile";
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        RealmResults<Item> sortedItems;
-        RealmList<Item> top10 = new RealmList<>();
-
-        if( getIntent().getBooleanExtra("isFavourite", false)) {
-            List<Item> itemsTemp = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING).subList(0,10);
-            top10.addAll(itemsTemp);
-        }
-
-
-        if(getIntent().getLongExtra("categoryId", -1) == -1) {
-
-            sortedItems = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
-            isAll = true;
-        } else {
-            Log.d("ItemActivity","Category with id "+category.getId()+" has "+items.size()+" items");
-            if (settings.getBoolean("order", true)) {
-                sortedItems = items.sort("order", Sort.ASCENDING);
-            } else {
-                sortedItems = items.sort("counter", Sort.DESCENDING);
+            case 1 : {
+                getSupportActionBar().setTitle(R.string.edit);
+                sortedItems = mRealm.where(Item.class).findAll().sort("lastUse", Sort.DESCENDING);
+                break;
             }
-            getSupportActionBar().setTitle(category.getTitle());
+            case 2 : {
+                getSupportActionBar().setTitle(R.string.favourite);
+                sortedItems = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
+                sortedItems.subList(0, 10);
+
+                break;
+            }
+            case 3 : {
+                getSupportActionBar().setTitle(R.string.last);
+                sortedItems = mRealm.where(Item.class).findAll().sort("lastUse", Sort.DESCENDING);
+                sortedItems.subList(0, 30);
+
+
+                break;
+            }
         }
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = getApplicationContext();
         mRecyclerView = (RecyclerView) findViewById(R.id.category_recycler_view);
         mLayoutManager = new GridLayoutManager(context, getResources().getInteger(R.integer.column));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        if(sortedItems.isEmpty()) {
-            mAdapter = new ItemAdapter(context, top10, isAll);
-            getSupportActionBar().setTitle(R.string.top);
-        } else if (getIntent().getBooleanExtra("lastUsed", false)) {
-            mAdapter = new ItemAdapter(context, mRealm.where(Item.class).findAll().sort("lastUse", Sort.DESCENDING), isAll);
-            getSupportActionBar().setTitle(R.string.last);
-        } else {
-            mAdapter = new ItemAdapter(context, sortedItems, isAll);
-        }
+        mAdapter = new ItemAdapter(context, sortedItems, getIntent().getIntExtra("itemMode",0) == 1);
 
         mRecyclerView.setAdapter(mAdapter);
 

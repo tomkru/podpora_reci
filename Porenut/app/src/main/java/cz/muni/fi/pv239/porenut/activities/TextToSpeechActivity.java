@@ -31,6 +31,7 @@ public class TextToSpeechActivity extends AppCompatActivity {
             }
         });
 
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

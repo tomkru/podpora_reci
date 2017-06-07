@@ -14,21 +14,12 @@
         android:text="@string/speak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textToSpeechButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/textToSpeechButton"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/textToSpeechEditText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/textToSpeechButton"/>
+        android:id="@+id/textToSpeechEditText" />
 </RelativeLayout>

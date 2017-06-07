@@ -135,10 +135,6 @@ public class MainActivity extends AppCompatActivity
             counter.setChecked(true);
         }
 
-        //TODO delete
-        Category category = mRealm.where(Category.class).equalTo("id",1).findFirst();
-        //Log.d("MainActivity", "Category with id 1 has title " + category.getTitle() +" and "
-        //        +category.getItems().size() + " items");
 
         mAdapter = new CategoryAdapter(mContext,categories);
         mRecyclerView.setAdapter(mAdapter);
@@ -194,7 +190,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_recently_used: {
                 Log.d("MainActivity","Click on last used");
                 Intent intent = new Intent(this, ItemActivity.class);
-                intent.putExtra("lastUsed", true);
+                intent.putExtra("itemMode", 3);
                 this.startActivity(intent);
                 break;
             }

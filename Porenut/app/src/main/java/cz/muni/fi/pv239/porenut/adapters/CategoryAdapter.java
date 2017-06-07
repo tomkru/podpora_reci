@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.util.List;
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.entities.Category;
@@ -74,7 +73,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 Intent intent = new Intent(mContext, ItemActivity.class);
                 intent.putExtra("categoryId", clickedCategory.getId());
                 if (clickedCategory.getId() == 7) {
-                    intent.putExtra("isFavourite", true);
+                    intent.putExtra("itemMode", 2);
                 }
 
                 mContext.startActivity(intent);

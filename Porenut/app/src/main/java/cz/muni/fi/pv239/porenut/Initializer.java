@@ -22,7 +22,6 @@ public class Initializer {
     public void initData() {
         int currentOrder;
 
-        // TODO load items from json and add items to Category constructor
         mRealm.beginTransaction();
 
         // init categories

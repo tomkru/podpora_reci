@@ -131,7 +131,7 @@ public class AdminModeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
-                intent.putExtra("categoryId", -1);
+                intent.putExtra("itemMode", 1);
 
                 startActivity(intent);
             }

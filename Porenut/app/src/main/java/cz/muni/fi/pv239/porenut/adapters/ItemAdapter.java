@@ -31,7 +31,7 @@ import io.realm.RealmConfiguration;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
     public Context context;
     public List<Item> mDataSet;
-    private boolean isAll = false;
+    private boolean adminMode = false;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView mCardView;
@@ -44,10 +44,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         }
     }
 
-    public ItemAdapter(Context context, OrderedRealmCollection<Item> mDataSet, boolean isAll) {
+    public ItemAdapter(Context context, OrderedRealmCollection<Item> mDataSet, boolean adminMode) {
         this.context = context;
         this.mDataSet = mDataSet;
-        this.isAll = isAll;
+        this.adminMode = adminMode;
         Log.d("ItemAdapt","Item list length "+mDataSet.size());
     }
 
@@ -67,7 +67,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         final Realm mRealm = Realm.getInstance(config);
 
         // Set a click listener for the current item of RecyclerView
-        if (!isAll) {
+        if (!adminMode) {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

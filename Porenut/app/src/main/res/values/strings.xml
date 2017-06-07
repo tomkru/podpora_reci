@@ -24,6 +24,7 @@
     <string name="advanced">"Advanced"</string>
     <string name="admin">"Admin mode"</string>
     <string name="top">Favourite</string>
+    <string name="edit">"Edit"</string>
 
     <!-- categories & items -->
     <string name="food">"Food"</string>
