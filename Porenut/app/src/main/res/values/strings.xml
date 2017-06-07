@@ -23,6 +23,7 @@
     <string name="order_counter">"Order by counter"</string>
     <string name="advanced">"Advanced"</string>
     <string name="admin">"Admin mode"</string>
+    <string name="top">Favourite</string>
 
     <!-- categories & items -->
     <string name="food">"Food"</string>

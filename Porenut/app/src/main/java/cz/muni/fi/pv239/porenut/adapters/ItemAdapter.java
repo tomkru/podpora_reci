@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.List;
 
 import cz.muni.fi.pv239.porenut.R;
@@ -76,6 +77,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
                     Log.d("ItemAdapter", "Click on item with id " + clickedItem.getId());
                     mRealm.beginTransaction();
                     clickedItem.setCounter(clickedItem.getCounter() + 1);
+                    clickedItem.setLastUse(Calendar.getInstance().getTime());
                     mRealm.commitTransaction();
 
                     Toast.makeText(context, R.string.playing,Toast.LENGTH_LONG).show();

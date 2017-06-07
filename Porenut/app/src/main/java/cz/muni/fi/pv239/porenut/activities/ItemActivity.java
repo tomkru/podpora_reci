@@ -77,7 +77,7 @@ public class ItemActivity extends AppCompatActivity {
 
 
         if(getIntent().getLongExtra("categoryId", -1) == -1) {
-            getSupportActionBar().setTitle("All");
+
             sortedItems = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
             isAll = true;
         } else {
@@ -98,6 +98,10 @@ public class ItemActivity extends AppCompatActivity {
 
         if(sortedItems.isEmpty()) {
             mAdapter = new ItemAdapter(context, top10, isAll);
+            getSupportActionBar().setTitle(R.string.top);
+        } else if (getIntent().getBooleanExtra("lastUsed", false)) {
+            mAdapter = new ItemAdapter(context, mRealm.where(Item.class).findAll().sort("lastUse", Sort.DESCENDING), isAll);
+            getSupportActionBar().setTitle(R.string.last);
         } else {
             mAdapter = new ItemAdapter(context, sortedItems, isAll);
         }

@@ -17,6 +17,7 @@
     <string name="order_counter">"Seřaď podle oblíbenosti"</string>
     <string name="advanced">"Pokročilé"</string>
     <string name="admin">"Administrátorský mód"</string>
+    <string name="top">"Oblíbené"</string>
 
 
     <!-- categories & items -->

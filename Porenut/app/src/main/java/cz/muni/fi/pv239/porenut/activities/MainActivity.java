@@ -33,6 +33,7 @@ import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.SpacesItemDecoration;
 import cz.muni.fi.pv239.porenut.adapters.CategoryAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
+import cz.muni.fi.pv239.porenut.entities.Item;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
@@ -192,6 +193,9 @@ public class MainActivity extends AppCompatActivity
             }
             case R.id.nav_recently_used: {
                 Log.d("MainActivity","Click on last used");
+                Intent intent = new Intent(this, ItemActivity.class);
+                intent.putExtra("lastUsed", true);
+                this.startActivity(intent);
                 break;
             }
             case R.id.nav_counter: {
