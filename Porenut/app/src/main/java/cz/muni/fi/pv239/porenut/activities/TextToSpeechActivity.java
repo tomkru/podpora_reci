@@ -41,6 +41,7 @@ public class TextToSpeechActivity extends AppCompatActivity {
                     String toSpeak = et1.getText().toString();
                     Toast.makeText(getApplicationContext(), toSpeak,Toast.LENGTH_SHORT).show();
                     t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+                    et1.setText("");
                 }
 
             }
