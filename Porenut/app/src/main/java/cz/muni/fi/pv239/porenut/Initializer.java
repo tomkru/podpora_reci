@@ -30,7 +30,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.greetings),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_greetings);
+                R.raw.ic_greetings);
         Category managedCategoryGreetings = mRealm.copyToRealm(categoryGreetings);
 
         Category categoryFood = new Category(
@@ -38,7 +38,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.food),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_food);
+                R.raw.ic_food);
         Category managedCategoryFood = mRealm.copyToRealm(categoryFood);
 
         Category categoryDrink = new Category(
@@ -46,7 +46,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.drink),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_drinks);
+                R.raw.ic_drinks);
         Category managedCategoryDrink = mRealm.copyToRealm(categoryDrink);
 
         Category categoryNeed = new Category(
@@ -54,7 +54,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.need),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_need);
+                R.raw.ic_need);
         Category managedCategoryNeed = mRealm.copyToRealm(categoryNeed);
 
         Category categoryCustom = new Category(
@@ -62,7 +62,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.custom),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_custom);
+                R.raw.ic_custom);
         Category managedCategoryCustom = mRealm.copyToRealm(categoryCustom);
 
         Category categoryHealth = new Category(
@@ -70,7 +70,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.health),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_health);
+                R.raw.ic_health);
         Category managedCategoryHealth = mRealm.copyToRealm(categoryHealth);
 
         Category categoryFavourite = new Category(
@@ -78,7 +78,7 @@ public class Initializer {
                 mContext.getResources().getString(R.string.favourite),
                 mContext.getResources().getColor(R.color.colorCategoryCardDefault),
                 mContext.getResources().getColor(R.color.colorTextDefault),
-                R.mipmap.ic_favourite);
+                R.raw.ic_favourite);
         mRealm.copyToRealm(categoryFavourite);
         // end of init categories
 
@@ -121,22 +121,22 @@ public class Initializer {
         managedItem = mRealm.copyToRealm(item);
         managedCategoryGreetings.getItems().add(managedItem);
 
-        item = new Item("good_time", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("good_time", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryGreetings.getItems().add(managedItem);
 
-        item = new Item("good_time_u", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("good_time_u", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryGreetings.getItems().add(managedItem);
 
-        item = new Item("next", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("next", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryGreetings.getItems().add(managedItem);
 
-        item = new Item("next_time", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("next_time", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryGreetings.getItems().add(managedItem);
@@ -180,57 +180,57 @@ public class Initializer {
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("chicken", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("chicken", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("cake", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("cake", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("sauce", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("sauce", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("schn", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("schn", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("roast", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("roast", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("pasta", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("pasta", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("tomato", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("tomato", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("pork", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("pork", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("hal", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("hal", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("dump", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("dump", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
 
-        item = new Item("soup", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("soup", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryFood.getItems().add(managedItem);
@@ -258,22 +258,22 @@ public class Initializer {
         managedItem = mRealm.copyToRealm(item);
         managedCategoryDrink.getItems().add(managedItem);
 
-        item = new Item("water", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("water", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryDrink.getItems().add(managedItem);
 
-        item = new Item("sirup", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("sirup", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryDrink.getItems().add(managedItem);
 
-        item = new Item("milk", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("milk", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryDrink.getItems().add(managedItem);
 
-        item = new Item("beer", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("beer", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryDrink.getItems().add(managedItem);
@@ -306,32 +306,32 @@ public class Initializer {
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
 
-        item = new Item("cold", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("cold", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
 
-        item = new Item("hot", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("hot", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
 
-        item = new Item("walk", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("walk", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
 
-        item = new Item("non_walk", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("non_walk", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
 
-        item = new Item("tv", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("tv", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
 
-        item = new Item("news", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("news", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryNeed.getItems().add(managedItem);
@@ -339,7 +339,7 @@ public class Initializer {
         // init custom items
         currentOrder = 0;
 
-        item = new Item("fran", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("fran", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryCustom.getItems().add(managedItem);
@@ -354,17 +354,17 @@ public class Initializer {
         managedItem = mRealm.copyToRealm(item);
         managedCategoryCustom.getItems().add(managedItem);
 
-        item = new Item("pavel", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("pavel", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryCustom.getItems().add(managedItem);
 
-        item = new Item("hanka", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("hanka", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryCustom.getItems().add(managedItem);
 
-        item = new Item("radejov", currentOrder++, R.color.colorItemCardSecondaryDefault, R.color.colorTextDefault);
+        item = new Item("radejov", currentOrder++, R.color.colorItemCardPrimaryDefault, R.color.colorTextDefault);
         item.setTextAudioByItemId(mContext);
         managedItem = mRealm.copyToRealm(item);
         managedCategoryCustom.getItems().add(managedItem);

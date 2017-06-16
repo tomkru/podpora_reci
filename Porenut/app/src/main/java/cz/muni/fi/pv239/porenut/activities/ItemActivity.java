@@ -8,6 +8,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import java.util.List;
+
 import cz.muni.fi.pv239.porenut.R;
 import cz.muni.fi.pv239.porenut.adapters.ItemAdapter;
 import cz.muni.fi.pv239.porenut.entities.Category;
@@ -30,6 +32,7 @@ public class ItemActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private Realm mRealm;
     private RealmList<Item> items;
+    private List<Item> itemsToAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,27 +72,32 @@ public class ItemActivity extends AppCompatActivity {
 
                 if (settings.getBoolean("order", true)) {
                     sortedItems = items.sort("order", Sort.ASCENDING);
+                    itemsToAdapter = sortedItems.subList(0, items.size());
                 } else {
                     sortedItems = items.sort("counter", Sort.DESCENDING);
+                    itemsToAdapter = sortedItems.subList(0, items.size());
                 }
+
                 break;
             }
             case 1 : {
                 getSupportActionBar().setTitle(R.string.edit);
-                sortedItems = mRealm.where(Item.class).findAll().sort("lastUse", Sort.DESCENDING);
+                sortedItems = mRealm.where(Item.class).findAll().sort("lastUsed", Sort.DESCENDING);
+                itemsToAdapter = sortedItems.subList(0, sortedItems.size());
                 break;
             }
             case 2 : {
                 getSupportActionBar().setTitle(R.string.favourite);
                 sortedItems = mRealm.where(Item.class).findAll().sort("counter", Sort.DESCENDING);
-                sortedItems.subList(0, 10);
+                itemsToAdapter = sortedItems.subList(0, 20);
+
 
                 break;
             }
             case 3 : {
                 getSupportActionBar().setTitle(R.string.last);
-                sortedItems = mRealm.where(Item.class).findAll().sort("lastUse", Sort.DESCENDING);
-                sortedItems.subList(0, 30);
+                sortedItems = mRealm.where(Item.class).findAll().sort("lastUsed", Sort.DESCENDING);
+                itemsToAdapter = sortedItems.subList(0, 20);
 
 
                 break;
@@ -103,7 +111,7 @@ public class ItemActivity extends AppCompatActivity {
         mLayoutManager = new GridLayoutManager(context, getResources().getInteger(R.integer.column));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new ItemAdapter(context, sortedItems, getIntent().getIntExtra("itemMode",0) == 1);
+        mAdapter = new ItemAdapter(context, itemsToAdapter, getIntent().getIntExtra("itemMode",0) == 1);
 
         mRecyclerView.setAdapter(mAdapter);
 

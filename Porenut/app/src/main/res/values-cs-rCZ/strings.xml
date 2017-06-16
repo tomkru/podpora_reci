@@ -19,6 +19,7 @@
     <string name="admin">"Administrátorský mód"</string>
     <string name="top">"Oblíbené"</string>
     <string name="edit">"Vyber k editaci"</string>
+    <string name="options">"Nabídka"</string>
 
 
     <!-- categories & items -->
@@ -75,7 +76,7 @@
     <string name="sirup">"Dal bych si šťávu, prosím"</string>
 
     <!-- need -->
-    <string name="toilet">"Potřebuji na záchod"</string>
+    <string name="toilet">"Chce se mi na záchod"</string>
     <string name="tired">"Jsem unavený"</string>
     <string name="sleep">"Chce se mi spát"</string>
     <string name="shower">"Jdu se umýt"</string>

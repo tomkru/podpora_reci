@@ -25,6 +25,7 @@
     <string name="admin">"Admin mode"</string>
     <string name="top">Favourite</string>
     <string name="edit">"Edit"</string>
+    <string name="options">"Options"</string>
 
     <!-- categories & items -->
     <string name="food">"Food"</string>

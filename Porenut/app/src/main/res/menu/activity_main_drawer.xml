@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="none">
-        <item
-            android:id="@+id/nav_keyboard"
-            android:icon="@drawable/ic_menu_keyboard"
-            android:title="@string/manually" />
-        <item
-            android:id="@+id/nav_recently_used"
-            android:icon="@drawable/ic_menu_recently"
-            android:title="@string/last"/>
-    </group>
+    <item android:title="@string/options">
+        <menu>
+            <group android:checkableBehavior="none">
+                <item
+                    android:id="@+id/nav_keyboard"
+                    android:icon="@drawable/ic_menu_keyboard"
+                    android:title="@string/manually" />
+                <item
+                    android:id="@+id/nav_recently_used"
+                    android:icon="@drawable/ic_menu_recently"
+                    android:title="@string/last"/>
+            </group>
+        </menu>
+    </item>
     <item android:title="@string/order">
         <menu>
         <group android:checkableBehavior="single">
@@ -22,7 +26,6 @@
                 android:id="@+id/nav_counter"
                 android:checkable="true"
                 android:title="@string/order_counter"/>
-
         </group>
         </menu>
     </item>

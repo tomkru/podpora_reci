@@ -200,7 +200,8 @@ public class MainActivity extends AppCompatActivity
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 settings.edit().putBoolean("order", false).commit();
                 finish();
-                startActivity(getIntent());
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.nav_order: {
@@ -210,7 +211,8 @@ public class MainActivity extends AppCompatActivity
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 settings.edit().putBoolean("order", true).commit();
                 finish();
-                startActivity(getIntent());
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.nav_auth: {

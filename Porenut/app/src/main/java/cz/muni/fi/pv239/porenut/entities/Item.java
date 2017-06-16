@@ -6,7 +6,6 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.Date;
 
-import cz.muni.fi.pv239.porenut.R;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -26,7 +25,7 @@ public class Item extends RealmObject {
     private int audioFileId;
     private String userAudioFileId;
     private boolean isUser;
-    private Date lastUse;
+    private Date lastUsed;
 
 
     public Item(){
@@ -39,15 +38,15 @@ public class Item extends RealmObject {
         this.cardColor = cardColor;
         this.textColor = textColor;
         this.counter = 0;
-        this.lastUse = Calendar.getInstance().getTime();
+        this.lastUsed = Calendar.getInstance().getTime();
     }
 
-    public Date getLastUse() {
-        return lastUse;
+    public Date getLastUsed() {
+        return lastUsed;
     }
 
-    public void setLastUse(Date lastUse) {
-        this.lastUse = lastUse;
+    public void setLastUsed(Date lastUsed) {
+        this.lastUsed = lastUsed;
     }
 
     public String getId() {

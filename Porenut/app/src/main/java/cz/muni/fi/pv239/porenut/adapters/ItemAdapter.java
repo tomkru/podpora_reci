@@ -44,7 +44,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
         }
     }
 
-    public ItemAdapter(Context context, OrderedRealmCollection<Item> mDataSet, boolean adminMode) {
+    public ItemAdapter(Context context, List<Item> mDataSet, boolean adminMode) {
         this.context = context;
         this.mDataSet = mDataSet;
         this.adminMode = adminMode;
@@ -77,7 +77,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>  {
                     Log.d("ItemAdapter", "Click on item with id " + clickedItem.getId());
                     mRealm.beginTransaction();
                     clickedItem.setCounter(clickedItem.getCounter() + 1);
-                    clickedItem.setLastUse(Calendar.getInstance().getTime());
+                    clickedItem.setLastUsed(Calendar.getInstance().getTime());
                     mRealm.commitTransaction();
 
                     Toast.makeText(context, R.string.playing,Toast.LENGTH_LONG).show();
